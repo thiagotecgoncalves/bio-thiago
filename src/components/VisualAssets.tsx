@@ -20,18 +20,6 @@ export const CustomizableVisualSlot: React.FC<CustomizableVisualProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (typeof reader.result === 'string') {
-        onImageChange(slotId, reader.result);
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
   return (
     <div className={`relative group overflow-hidden bg-[#F4F5F7] border border-slate-200/90 ${className}`}>
       {customImage ? (
@@ -49,7 +37,17 @@ export const CustomizableVisualSlot: React.FC<CustomizableVisualProps> = ({
         ref={fileInputRef}
         type="file"
         accept="image/*"
-        onChange={handleFileSelect}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            if (typeof reader.result === 'string') {
+              onImageChange(slotId, reader.result);
+            }
+          };
+          reader.readAsDataURL(file);
+        }}
         className="hidden"
         aria-label={`Substituir imagem: ${alt}`}
       />
@@ -69,24 +67,24 @@ export const CustomizableVisualSlot: React.FC<CustomizableVisualProps> = ({
 
 export const HeroSystemIllustration: React.FC = () => {
   return (
-    <div className="w-full h-full min-h-[420px] p-6 sm:p-8 flex flex-col justify-between bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#E2E8F0] select-none">
+    <div className="w-full h-full min-h-[300px] sm:min-h-[360px] p-3.5 sm:p-5 lg:p-6 flex flex-col justify-between bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#E2E8F0] select-none">
       {/* Top Technical Header */}
-      <div className="flex items-center justify-between border-b border-slate-300/80 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-slate-300/80 pb-2.5 sm:pb-3">
         <div>
-          <p className="text-xs font-mono text-slate-500 tracking-tight">
+          <p className="text-[10px] sm:text-xs font-mono text-slate-500 tracking-tight">
             ARQUITETURA CENTRALIZADA · RESPONSABILIDADE ÚNICA (CRT/TRT)
           </p>
-          <p className="text-sm font-semibold text-slate-900 mt-0.5">
+          <p className="text-xs sm:text-sm font-semibold text-slate-900 mt-0.5">
             Topologia Integrada: Segurança, Conectividade e Energia
           </p>
         </div>
-        <span className="text-xs font-mono font-semibold text-[#0051BA] tabular-nums">
+        <span className="text-[11px] sm:text-xs font-mono font-semibold text-[#0051BA] tabular-nums">
           NBR 5410 · NBR 17240 · NBR 14565
         </span>
       </div>
 
       {/* Central Visual Hardware Diagram (SimpliSafe Clean Hardware Aesthetic) */}
-      <div className="my-auto py-6">
+      <div className="my-auto py-2 sm:py-3">
         <svg
           viewBox="0 0 680 340"
           className="w-full h-auto max-h-[290px]"
@@ -123,7 +121,7 @@ export const HeroSystemIllustration: React.FC = () => {
             <path d="M 250 170 L 185 170 L 185 95 L 155 95" stroke="#0051BA" />
             <path d="M 250 170 L 185 170 L 185 245 L 155 245" stroke="#0051BA" />
             {/* Right branch: Energy & Network */}
-            <path d="M 430 170 L 495 170 L 495 95 L 525 95" stroke="#15803D" />
+            <path d="M 430 170 L 495 170 L 495 95 L 525 95" stroke="#f3c742" />
             <path d="M 430 170 L 495 170 L 495 245 L 525 245" stroke="#0F172A" />
           </g>
 
@@ -151,7 +149,7 @@ export const HeroSystemIllustration: React.FC = () => {
             <rect x="20" y="192" width="145" height="106" rx="10" fill="url(#cardSurface)" stroke="#CBD5E1" strokeWidth="1.2" />
             {/* Minimalist Rack / Switch Vector */}
             <rect x="36" y="214" width="34" height="24" rx="4" fill="#F1F5F9" stroke="#0B1623" strokeWidth="1.8" />
-            <circle cx="44" cy="226" r="2" fill="#16A34A" />
+            <circle cx="44" cy="226" r="2.5" fill="#f3c742" />
             <circle cx="51" cy="226" r="2" fill="#0051BA" />
             <line x1="58" y1="226" x2="64" y2="226" stroke="#0B1623" strokeWidth="1.8" />
             <text x="80" y="224" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">
@@ -172,19 +170,19 @@ export const HeroSystemIllustration: React.FC = () => {
             {/* Shield + Technical Circuit Emblem */}
             <path
               d="M 340 120 L 362 128 L 362 146 C 362 161 352 172 340 177 C 328 172 318 161 318 146 L 318 128 Z"
-              fill="#0051BA"
-              stroke="#93C5FD"
+              fill="#f3c742"
+              stroke="#FEF08A"
               strokeWidth="1.5"
             />
-            <path d="M 333 148 L 338 153 L 348 143" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 333 148 L 338 153 L 348 143" stroke="#0B1623" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
 
-            <text x="340" y="198" textAnchor="middle" fill="#FFFFFF" fontSize="13" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">
-              GESTÃO TÉCNICA ÚNICA
+            <text x="340" y="198" textAnchor="middle" fill="#FFFFFF" fontSize="12.5" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">
+              THIAGO GONÇALVES
             </text>
             <text x="340" y="214" textAnchor="middle" fill="#94A3B8" fontSize="10" fontFamily="DM Sans, sans-serif">
               Projeto · Execução · Manutenção
             </text>
-            <text x="340" y="231" textAnchor="middle" fill="#38BDF8" fontSize="9.5" fontWeight="600" fontFamily="JetBrains Mono, monospace">
+            <text x="340" y="231" textAnchor="middle" fill="#f3c742" fontSize="9.5" fontWeight="600" fontFamily="JetBrains Mono, monospace">
               REGISTRO CRT + EMISSÃO TRT
             </text>
           </g>
@@ -193,8 +191,8 @@ export const HeroSystemIllustration: React.FC = () => {
           <g filter="url(#softShadow)">
             <rect x="515" y="38" width="145" height="106" rx="10" fill="url(#cardSurface)" stroke="#CBD5E1" strokeWidth="1.2" />
             {/* Solar / Inverter Vector */}
-            <rect x="531" y="58" width="32" height="28" rx="4" fill="#F0FDF4" stroke="#15803D" strokeWidth="1.8" />
-            <path d="M 545 64 L 541 72 L 548 72 L 544 80" stroke="#15803D" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <rect x="531" y="58" width="32" height="28" rx="4" fill="#FEF9C3" stroke="#0B1623" strokeWidth="1.8" />
+            <path d="M 545 64 L 541 72 L 548 72 L 544 80" stroke="#0B1623" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <text x="572" y="70" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">
               Solar On/Off-Grid
             </text>
@@ -202,8 +200,8 @@ export const HeroSystemIllustration: React.FC = () => {
               Autonomia &amp; Backup
             </text>
             <line x1="529" y1="104" x2="645" y2="104" stroke="#E2E8F0" strokeWidth="1" />
-            <text x="529" y="124" fill="#15803D" fontSize="9.5" fontWeight="600" fontFamily="JetBrains Mono, monospace">
-              03 · GERAÇÃO LIMPA
+            <text x="529" y="124" fill="#0B1623" fontSize="9.5" fontWeight="600" fontFamily="JetBrains Mono, monospace">
+              03 · GERAÇÃO SOLAR
             </text>
           </g>
 
@@ -212,7 +210,7 @@ export const HeroSystemIllustration: React.FC = () => {
             <rect x="515" y="192" width="145" height="106" rx="10" fill="url(#cardSurface)" stroke="#CBD5E1" strokeWidth="1.2" />
             {/* EV Wallbox Vector */}
             <rect x="533" y="212" width="28" height="32" rx="5" fill="#F1F5F9" stroke="#0B1623" strokeWidth="1.8" />
-            <circle cx="547" cy="224" r="5" fill="#0051BA" />
+            <circle cx="547" cy="224" r="5" fill="#f3c742" />
             <path d="M 541 236 L 553 236" stroke="#0B1623" strokeWidth="1.8" strokeLinecap="round" />
             <text x="572" y="224" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">
               Recarga EV
@@ -229,18 +227,20 @@ export const HeroSystemIllustration: React.FC = () => {
       </div>
 
       {/* Bottom Metric Strip inside Hero Visual */}
-      <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-300/80 text-left">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-3.5 sm:pt-4 border-t border-slate-300/80 text-left">
         <div>
-          <p className="text-xs text-slate-500">Interlocutor Técnico</p>
-          <p className="text-sm font-bold text-slate-900 font-mono tabular-nums">100% Único</p>
+          <p className="text-[11px] sm:text-xs text-slate-500">Interlocutor</p>
+          <p className="text-xs sm:text-sm font-bold text-slate-900 font-mono tabular-nums">100% Único</p>
         </div>
         <div>
-          <p className="text-xs text-slate-500">Conformidade Legal</p>
-          <p className="text-sm font-bold text-slate-900 font-mono tabular-nums">CRT + TRT</p>
+          <p className="text-[11px] sm:text-xs text-slate-500">Conformidade</p>
+          <p className="text-xs sm:text-sm font-bold text-slate-900 font-mono tabular-nums">CRT + TRT</p>
         </div>
         <div>
-          <p className="text-xs text-slate-500">Conflito de Terceiros</p>
-          <p className="text-sm font-bold text-emerald-700 font-mono tabular-nums">Zero Repasse</p>
+          <p className="text-[11px] sm:text-xs text-slate-500">Terceiros</p>
+          <p className="text-xs sm:text-sm font-bold text-[#0B1623] bg-[#f3c742]/40 px-1.5 py-0.5 rounded inline-block font-mono tabular-nums">
+            Zero Repasse
+          </p>
         </div>
       </div>
     </div>
@@ -248,7 +248,7 @@ export const HeroSystemIllustration: React.FC = () => {
 };
 
 export const SecurityPillarIllustration: React.FC = () => (
-  <div className="w-full h-56 bg-[#F4F5F7] flex items-center justify-center p-6">
+  <div className="w-full h-48 sm:h-56 bg-[#F4F5F7] flex items-center justify-center p-4 sm:p-6">
     <svg viewBox="0 0 400 180" className="w-full h-full" role="img" aria-label="Ilustração de Câmera IP, Controle de Acesso Facial e Detector de Incêndio SDAI">
       {/* Clean Architectural Backdrop */}
       <rect x="16" y="14" width="368" height="152" rx="8" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
@@ -285,7 +285,7 @@ export const SecurityPillarIllustration: React.FC = () => (
         <rect x="21" y="10" width="34" height="42" rx="3" fill="#1E293B" />
         {/* Face recognition reticle */}
         <path d="M 30 22 L 26 22 L 26 26 M 46 22 L 50 22 L 50 26 M 30 40 L 26 40 L 26 36 M 46 40 L 50 40 L 50 36" stroke="#38BDF8" strokeWidth="1.5" fill="none" />
-        <circle cx="38" cy="59" r="2.5" fill="#22C55E" />
+        <circle cx="38" cy="59" r="2.5" fill="#f3c742" />
         <text x="38" y="90" textAnchor="middle" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">Acesso</text>
         <text x="38" y="104" textAnchor="middle" fill="#64748B" fontSize="9.5" fontFamily="JetBrains Mono, monospace">Facial · Portaria</text>
       </g>
@@ -294,7 +294,7 @@ export const SecurityPillarIllustration: React.FC = () => (
 );
 
 export const NetworkPillarIllustration: React.FC = () => (
-  <div className="w-full h-56 bg-[#F4F5F7] flex items-center justify-center p-6">
+  <div className="w-full h-48 sm:h-56 bg-[#F4F5F7] flex items-center justify-center p-4 sm:p-6">
     <svg viewBox="0 0 400 180" className="w-full h-full" role="img" aria-label="Ilustração de Rack de Cabeamento Estruturado, Failover Automático e Wi-Fi Corporativo">
       <rect x="16" y="14" width="368" height="152" rx="8" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
 
@@ -303,7 +303,7 @@ export const NetworkPillarIllustration: React.FC = () => (
         <rect x="0" y="0" width="140" height="76" rx="5" fill="#0B1623" />
         {/* Rack Unit 1: Router Failover */}
         <rect x="8" y="8" width="124" height="24" rx="3" fill="#1E293B" stroke="#475569" strokeWidth="1" />
-        <circle cx="18" cy="20" r="3" fill="#22C55E" />
+        <circle cx="18" cy="20" r="3" fill="#f3c742" />
         <circle cx="28" cy="20" r="3" fill="#38BDF8" />
         <text x="40" y="23" fill="#E2E8F0" fontSize="8.5" fontFamily="JetBrains Mono, monospace">WAN1 + WAN2 FAILOVER</text>
 
@@ -341,7 +341,7 @@ export const NetworkPillarIllustration: React.FC = () => (
 );
 
 export const EnergyPillarIllustration: React.FC = () => (
-  <div className="w-full h-56 bg-[#F4F5F7] flex items-center justify-center p-6">
+  <div className="w-full h-48 sm:h-56 bg-[#F4F5F7] flex items-center justify-center p-4 sm:p-6">
     <svg viewBox="0 0 400 180" className="w-full h-full" role="img" aria-label="Ilustração de Inversor Solar Híbrido On/Off-Grid e Carregador Veicular EV">
       <rect x="16" y="14" width="368" height="152" rx="8" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
 
@@ -349,24 +349,24 @@ export const EnergyPillarIllustration: React.FC = () => (
       <g transform="translate(46, 28)">
         <rect x="14" y="0" width="84" height="82" rx="8" fill="#F8FAFC" stroke="#0B1623" strokeWidth="1.8" />
         <rect x="26" y="14" width="60" height="28" rx="4" fill="#0B1623" />
-        <text x="56" y="31" textAnchor="middle" fill="#22C55E" fontSize="10" fontWeight="700" fontFamily="JetBrains Mono, monospace">ON/OFF-GRID</text>
+        <text x="56" y="31" textAnchor="middle" fill="#f3c742" fontSize="10" fontWeight="700" fontFamily="JetBrains Mono, monospace">ON/OFF-GRID</text>
         <line x1="26" y1="54" x2="86" y2="54" stroke="#CBD5E1" strokeWidth="1.5" />
-        <circle cx="56" cy="67" r="4" fill="#16A34A" />
+        <circle cx="56" cy="67" r="4" fill="#f3c742" />
         <text x="56" y="102" textAnchor="middle" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">Inversor Híbrido</text>
         <text x="56" y="116" textAnchor="middle" fill="#64748B" fontSize="9.5" fontFamily="JetBrains Mono, monospace">Solar + Banco Baterias</text>
       </g>
 
       {/* Smart Power Bus */}
-      <path d="M 144 70 L 234 70" stroke="#16A34A" strokeWidth="2.2" />
-      <rect x="167" y="60" width="44" height="20" rx="4" fill="#F0FDF4" stroke="#16A34A" strokeWidth="1.2" />
-      <text x="189" y="73" textAnchor="middle" fill="#15803D" fontSize="8.5" fontWeight="700" fontFamily="JetBrains Mono, monospace">380/220V</text>
+      <path d="M 144 70 L 234 70" stroke="#f3c742" strokeWidth="2.5" />
+      <rect x="167" y="60" width="44" height="20" rx="4" fill="#0B1623" stroke="#f3c742" strokeWidth="1.2" />
+      <text x="189" y="73" textAnchor="middle" fill="#f3c742" fontSize="8.5" fontWeight="700" fontFamily="JetBrains Mono, monospace">380/220V</text>
 
       {/* EV Wallbox Charger */}
       <g transform="translate(238, 28)">
         <rect x="24" y="4" width="68" height="78" rx="12" fill="#0B1623" stroke="#334155" strokeWidth="1.8" />
         <circle cx="58" cy="34" r="14" fill="#1E293B" stroke="#38BDF8" strokeWidth="1.8" />
         <path d="M 56 27 L 52 35 L 59 35 L 55 42" stroke="#38BDF8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <rect x="42" y="58" width="32" height="6" rx="3" fill="#22C55E" />
+        <rect x="42" y="58" width="32" height="6" rx="3" fill="#f3c742" />
         <text x="58" y="102" textAnchor="middle" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">Wallbox Veicular</text>
         <text x="58" y="116" textAnchor="middle" fill="#64748B" fontSize="9.5" fontFamily="JetBrains Mono, monospace">Rateio Condominial</text>
       </g>
@@ -375,37 +375,37 @@ export const EnergyPillarIllustration: React.FC = () => (
 );
 
 export const AuthorityEngineerIllustration: React.FC = () => (
-  <div className="w-full h-full min-h-[380px] bg-[#0B1623] text-white p-8 flex flex-col justify-between relative overflow-hidden">
+  <div className="w-full h-full min-h-[340px] sm:min-h-[380px] bg-[#0B1623] text-white p-5 sm:p-8 flex flex-col justify-between relative overflow-hidden">
     {/* Technical Document Header */}
-    <div className="border-b border-slate-700/80 pb-5 flex items-center justify-between">
+    <div className="border-b border-slate-700/80 pb-4 sm:pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
       <div>
-        <p className="text-xs font-mono text-sky-400 tracking-wider">
+        <p className="text-[11px] sm:text-xs font-mono text-[#f3c742] tracking-wider">
           DOCUMENTO DE HABILITAÇÃO OFICIAL
         </p>
-        <h3 className="text-lg font-bold text-white mt-1">
+        <h3 className="text-base sm:text-lg font-bold text-white mt-1">
           Termo de Responsabilidade Técnica (TRT)
         </h3>
       </div>
-      <div className="text-right font-mono text-xs text-slate-300 tabular-nums">
+      <div className="font-mono text-xs text-slate-300 tabular-nums">
         CRT ATIVO · 10 ANOS
       </div>
     </div>
 
     {/* Visual Blueprint / Technical Seal Card */}
-    <div className="my-6 bg-slate-900/90 border border-slate-700/90 rounded-lg p-5 space-y-4">
-      <div className="flex items-start justify-between gap-4 border-b border-slate-800 pb-3.5">
+    <div className="my-5 sm:my-6 bg-slate-900/90 border border-slate-700/90 rounded-lg p-4 sm:p-5 space-y-4">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 border-b border-slate-800 pb-3.5">
         <div>
           <p className="text-xs text-slate-400">Responsável Técnico Habilitado</p>
           <p className="text-sm font-semibold text-white mt-0.5">
-            Gestor de Segurança &amp; Técnico Eletrotécnico
+            Thiago Gonçalves · Gestor de Segurança &amp; Eletrotécnico
           </p>
         </div>
-        <span className="text-xs font-mono text-emerald-400 font-semibold">
+        <span className="text-xs font-mono text-[#f3c742] font-semibold">
           HABILITAÇÃO PLENA
         </span>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 text-xs">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
         <div className="bg-slate-950/60 border border-slate-800/80 p-3 rounded">
           <p className="text-slate-400">Atribuição Elétrica</p>
           <p className="font-mono text-slate-100 font-semibold mt-1 tabular-nums">
@@ -420,26 +420,26 @@ export const AuthorityEngineerIllustration: React.FC = () => (
         </div>
       </div>
 
-      <div className="space-y-2 pt-1 text-xs text-slate-300 font-mono">
-        <div className="flex justify-between">
+      <div className="space-y-2 pt-1 text-[11px] sm:text-xs text-slate-300 font-mono">
+        <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5">
           <span className="text-slate-400">NBR 5410 / NR-10</span>
-          <span className="text-emerald-400">Instalações de Baixa Tensão</span>
+          <span className="text-[#f3c742]">Instalações de Baixa Tensão</span>
         </div>
-        <div className="flex justify-between">
+        <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5">
           <span className="text-slate-400">NBR 17240</span>
-          <span className="text-emerald-400">Detecção e Alarme de Incêndio</span>
+          <span className="text-[#f3c742]">Detecção e Alarme de Incêndio</span>
         </div>
-        <div className="flex justify-between">
+        <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5">
           <span className="text-slate-400">NBR 14565 / 16690</span>
-          <span className="text-emerald-400">Cabeamento &amp; Sistemas Fotovoltaicos</span>
+          <span className="text-[#f3c742]">Cabeamento &amp; Sistemas Fotovoltaicos</span>
         </div>
       </div>
     </div>
 
     {/* Bottom Verification Footnote */}
-    <div className="flex items-center justify-between text-xs text-slate-400 border-t border-slate-800 pt-4">
+    <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 border-t border-slate-800 pt-4">
       <span>Rastreabilidade Jurídica e Seguradoras</span>
-      <span className="font-mono text-white">1 Contrato · 1 TRT</span>
+      <span className="font-mono text-[#f3c742]">1 Contrato · 1 TRT</span>
     </div>
   </div>
 );
