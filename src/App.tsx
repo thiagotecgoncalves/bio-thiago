@@ -17,6 +17,7 @@ import {
   Home,
   Factory,
   ChevronDown,
+  Menu,
 } from 'lucide-react';
 import {
   CustomizableVisualSlot,
@@ -30,71 +31,11 @@ import { DynamicSolutionBlock } from './components/DynamicSolutionBlock';
 
 type AudienceKey = 'empresas' | 'condominios' | 'residencias';
 
-interface AudiencePainData {
-  label: string;
-  title: string;
-  fragmentedPain: string;
-  unifiedSolution: string;
-  typicalSavings: string;
-}
-
-const AUDIENCE_PROFILES: Record<AudienceKey, AudiencePainData> = {
-  empresas: {
-    label: 'Empresas e Indústrias',
-    title: 'Continuidade operacional sem paradas por conflito entre TI, elétrica e segurança',
-    fragmentedPain:
-      'A câmera IP para de gravar: a empresa de segurança culpa o switch de rede, a TI culpa a oscilação elétrica e o eletricista afirma que o quadro está normal. Sua operação fica desprotegida enquanto três fornecedores cobram visitas improdutivas.',
-    unifiedSolution:
-      'Diagnóstico e execução sob comando único: do quadro elétrico estabilizado e nobreaks dimensionados ao cabeamento certificado, failover de internet e CFTV/SDAI homologado com emissão de TRT.',
-    typicalSavings: 'Redução média de 35% no custo global de infraestrutura e zero chamados cruzados',
-  },
-  condominios: {
-    label: 'Condomínios e Síndicos',
-    title: 'Blindagem jurídica para o síndico e infraestrutura pronta para recarga veicular e portaria',
-    fragmentedPain:
-      'Instalações improvisadas no shaft e DG do prédio: cabos de portaria passando junto à rede de alta tensão, Wi-Fi que não alcança o subsolo para os carregadores veiculares e laudos de SDAI sem responsável técnico habilitado.',
-    unifiedSolution:
-      'Projeto executivo único com TRT registrado no CRT: adequação de carga elétrica para Wallbox EV com rateio individual, SDAI dentro da NBR 17240, controle de acesso facial e rede redundante.',
-    typicalSavings: 'Aprovação em vistorias de seguradoras e redução de até 40% em contratos avulsos',
-  },
-  residencias: {
-    label: 'Residências de Alto Padrão',
-    title: 'Proteção perimetral, Wi-Fi pleno, energia solar com backup e carregador EV sem obras repetidas',
-    fragmentedPain:
-      'Recém-reformada a residência, três equipes diferentes quebram gesso e abrem eletrodutos em momentos distintos para instalar câmeras, repetidores Wi-Fi que caem constantemente e inversor solar sem integração de backup.',
-    unifiedSolution:
-      'Planejamento integrado desde a infraestrutura seca: cabeamento estruturado invisível, roaming Wi-Fi contínuo em toda a propriedade, sistema híbrido Solar On/Off-Grid e segurança perimetral unificada.',
-    typicalSavings: 'Entrega limpa em cronograma único com garantia centralizada em um só profissional',
-  },
+const AUDIENCE_PROFILES: Record<AudienceKey, { label: string }> = {
+  empresas: { label: 'Empresas e Indústrias' },
+  condominios: { label: 'Condomínios e Síndicos' },
+  residencias: { label: 'Residências de Alto Padrão' },
 };
-
-const COMPARISON_ROWS = [
-  {
-    criterion: 'Diagnóstico de Falhas Técnicas',
-    fragmented: 'Jogo de empurra entre o instalador do CFTV, o técnico de rede e o eletricista.',
-    centralized: 'Resolução imediata: um único especialista analisa energia, rede lógica e equipamento.',
-  },
-  {
-    criterion: 'Infraestrutura e Passagem de Cabos',
-    fragmented: 'Eletrodutos congestionados, interferência eletromagnética e retrabalho em alvenaria.',
-    centralized: 'Eletrodutos e racks compartilhados com separação normativa (NBR 5410 e NBR 14565).',
-  },
-  {
-    criterion: 'Responsabilidade Legal e Seguros',
-    fragmented: 'Instaladores informais sem registro; risco de negativa de sinistro pela seguradora.',
-    centralized: 'Emissão de TRT (Termo de Responsabilidade Técnica) válido perante CRT, Bombeiros e seguradoras.',
-  },
-  {
-    criterion: 'Dimensionamento Elétrico e Nobreaks',
-    fragmented: 'Sistemas de segurança e rede desligam no primeiro pico ou queda de energia.',
-    centralized: 'Autonomia calculada por Eletrotécnico: integração nativa com Solar Off-Grid e bancos de bateria.',
-  },
-  {
-    criterion: 'Gestão de Contratos e Orçamentos',
-    fragmented: '3 a 5 orçamentos separados, visitas desencontradas e múltiplas taxas de deslocamento.',
-    centralized: 'Um único cronograma executivo, um único contrato e manutenção preventiva consolidada.',
-  },
-];
 
 const SERVICE_PILLARS = [
   {
@@ -202,6 +143,7 @@ const FAQ_ITEMS = [
 ];
 
 export default function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [selectedAudience, setSelectedAudience] = useState<AudienceKey>('empresas');
   const [selectedScope, setSelectedScope] = useState<string[]>(['cftv', 'rede', 'ev']);
   const [whatsappNumber, setWhatsappNumber] = useState<string>('5567996294838');
@@ -240,30 +182,23 @@ export default function App() {
     return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
   };
 
-  const activeAudience = AUDIENCE_PROFILES[selectedAudience];
   const estimatedSuppliersReplaced = Math.max(1, Math.min(4, Math.ceil(selectedScope.length * 0.75)));
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white text-[#0B1623] flex flex-col">
-      {/* TOP BAR CONTRACT: Fixed in entire landing page (Brand wordmark | 4-5 nav links | 1 Primary WhatsApp CTA) */}
+      {/* TOP BAR: Fixed in entire landing page (Brand wordmark | Desktop Links | Mobile Menu + WhatsApp CTA) */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-8">
+        <div className="max-w-[1240px] mx-auto px-3 sm:px-8 h-14 sm:h-16 flex items-center justify-between gap-2">
           {/* Zone 1: Single text element wordmark */}
           <a
             href="#"
-            className="font-display text-sm sm:text-lg font-extrabold tracking-tight text-[#0B1623] whitespace-nowrap shrink-0"
+            className="font-display text-xs min-[360px]:text-sm sm:text-lg font-extrabold tracking-tight text-[#0B1623] whitespace-nowrap shrink-0"
           >
             THIAGO GONÇALVES
           </a>
 
-          {/* Zone 2: Concise single-line navigation links */}
+          {/* Zone 2: Concise single-line navigation links (Desktop) */}
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
-            <a
-              href="#problema-solucao"
-              className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
-            >
-              Problema vs Solução
-            </a>
             <a
               href="#servicos"
               className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
@@ -290,8 +225,8 @@ export default function App() {
             </a>
           </nav>
 
-          {/* Zone 3: 1 Primary Action (High-contrast #f3c742 WhatsApp CTA) */}
-          <div className="flex items-center shrink-0">
+          {/* Zone 3: 1 Primary Action + Mobile Hamburger Menu Toggle */}
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <a
               href={buildWhatsAppUrl('Atendimento Técnico Integrado')}
               target="_blank"
@@ -301,9 +236,105 @@ export default function App() {
               <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>Falar no WhatsApp</span>
             </a>
+
+            {/* Mobile Menu Hamburger Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              className="md:hidden p-1.5 min-[360px]:p-2 rounded-lg text-slate-700 hover:text-[#0B1623] hover:bg-slate-100 transition-colors cursor-pointer flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#f3c742]"
+              aria-label={isMobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5 text-[#0B1623]" />
+              ) : (
+                <Menu className="w-5 h-5 text-[#0B1623]" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Dropdown Drawer */}
+        <div
+          className={`fixed top-14 sm:top-16 left-0 right-0 z-40 bg-white border-b border-slate-200 shadow-xl md:hidden transition-all duration-200 ease-in-out ${
+            isMobileMenuOpen
+              ? 'opacity-100 translate-y-0 pointer-events-auto'
+              : 'opacity-0 -translate-y-2 pointer-events-none'
+          }`}
+        >
+          <div className="max-w-[1240px] mx-auto px-4 py-3 space-y-1">
+            <a
+              href="#servicos"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
+            >
+              <span className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#0051BA]"></span>
+                Pilares Técnicos
+              </span>
+              <span className="text-xs font-mono text-slate-400">CFTV · Redes · Solar</span>
+            </a>
+
+            <a
+              href="#escopo"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
+            >
+              <span className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#f3c742]"></span>
+                Simulador de Escopo
+              </span>
+              <span className="text-xs font-mono text-slate-400">Diagnóstico</span>
+            </a>
+
+            <a
+              href="#autoridade"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
+            >
+              <span className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Registro CRT &amp; TRT
+              </span>
+              <span className="text-xs font-mono text-slate-400">Habilitação</span>
+            </a>
+
+            <a
+              href="#faq"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
+            >
+              <span className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-slate-400"></span>
+                Dúvidas Frequentes
+              </span>
+              <span className="text-xs font-mono text-slate-400">FAQ</span>
+            </a>
+
+            <div className="pt-2 mt-2 border-t border-slate-100">
+              <a
+                href={buildWhatsAppUrl('Menu Mobile')}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] font-bold text-sm shadow-sm transition-colors"
+              >
+                <MessageCircle className="w-4 h-4 shrink-0" />
+                <span>Falar no WhatsApp com Thiago</span>
+              </a>
+            </div>
           </div>
         </div>
       </header>
+
+      {/* Backdrop overlay for mobile menu */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-xs md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       <main className="flex-1 pt-14 sm:pt-16">
         {/* HERO SECTION — Compact, High-Trust Layout with 100% Zoom Viewport Fit */}
@@ -389,156 +420,6 @@ export default function App() {
                 <p className="mt-0.5 text-xs text-slate-600 leading-snug">
                   Fim das visitas cobradas em duplicidade por terceiros desconectados.
                 </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION: O PROBLEMA VS A SOLUÇÃO (SimpliSafe Light Gray Canvas #F4F5F7) */}
-        <section id="problema-solucao" className="py-14 sm:py-20 lg:py-28 bg-[#F4F5F7] border-b border-slate-200/90">
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
-            <div className="max-w-3xl">
-              <p className="text-xs font-mono font-semibold text-[#0051BA] tracking-wider">
-                ANÁLISE DE EFICIÊNCIA OPERACIONAL
-              </p>
-              <h2 className="mt-2 font-display text-2xl sm:text-4xl font-extrabold text-[#0B1623] tracking-tight">
-                O custo oculto de contratar empresas separadas para sistemas que dependem da mesma infraestrutura.
-              </h2>
-              <p className="mt-3 sm:mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
-                Câmeras IP precisam de switches PoE e rede estruturada. Portarias e servidores precisam de
-                energia estabilizada e nobreaks. Carregadores veiculares exigem leitura de carga e rede no
-                subsolo. Quando você divide isso entre múltiplos fornecedores, ninguém assume o resultado final.
-              </p>
-            </div>
-
-            {/* Interactive Audience Filter Tabs (Functional Segmented Controls - Mobile Responsive) */}
-            <div className="mt-8 sm:mt-10">
-              <div className="grid grid-cols-1 sm:inline-flex sm:flex-wrap items-stretch sm:items-center gap-1.5 p-1.5 bg-slate-200/80 rounded-lg w-full sm:w-auto">
-                <button
-                  type="button"
-                  onClick={() => setSelectedAudience('empresas')}
-                  className={`inline-flex items-center justify-center sm:justify-start gap-2 px-4 py-2.5 sm:py-2 text-xs sm:text-sm font-semibold rounded-md transition-all duration-150 cursor-pointer whitespace-nowrap shrink-0 ${
-                    selectedAudience === 'empresas'
-                      ? 'bg-white text-[#0B1623] shadow-sm'
-                      : 'text-slate-600 hover:text-[#0B1623]'
-                  }`}
-                >
-                  <Factory className="w-4 h-4 shrink-0" />
-                  <span>Para Gestores de Empresas</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedAudience('condominios')}
-                  className={`inline-flex items-center justify-center sm:justify-start gap-2 px-4 py-2.5 sm:py-2 text-xs sm:text-sm font-semibold rounded-md transition-all duration-150 cursor-pointer whitespace-nowrap shrink-0 ${
-                    selectedAudience === 'condominios'
-                      ? 'bg-white text-[#0B1623] shadow-sm'
-                      : 'text-slate-600 hover:text-[#0B1623]'
-                  }`}
-                >
-                  <Building2 className="w-4 h-4 shrink-0" />
-                  <span>Para Síndicos e Condomínios</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedAudience('residencias')}
-                  className={`inline-flex items-center justify-center sm:justify-start gap-2 px-4 py-2.5 sm:py-2 text-xs sm:text-sm font-semibold rounded-md transition-all duration-150 cursor-pointer whitespace-nowrap shrink-0 ${
-                    selectedAudience === 'residencias'
-                      ? 'bg-white text-[#0B1623] shadow-sm'
-                      : 'text-slate-600 hover:text-[#0B1623]'
-                  }`}
-                >
-                  <Home className="w-4 h-4 shrink-0" />
-                  <span>Para Residências</span>
-                </button>
-              </div>
-
-              {/* Dynamic Scenario Comparison Box */}
-              <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
-                {/* Pain Card: Fragmented Vendors */}
-                <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-8 flex flex-col justify-between">
-                  <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
-                      <span className="text-xs font-mono font-semibold text-rose-700">
-                        MODELO TRADICIONAL FRAGMENTADO
-                      </span>
-                      <span className="text-xs font-mono text-slate-500 tabular-nums">
-                        3 a 5 Fornecedores Distintos
-                      </span>
-                    </div>
-                    <h3 className="mt-4 sm:mt-5 font-display text-lg sm:text-xl font-bold text-[#0B1623]">
-                      O que acontece em {activeAudience.label}:
-                    </h3>
-                    <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-                      {activeAudience.fragmentedPain}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-start sm:items-center gap-2.5 text-xs font-medium text-rose-700">
-                    <X className="w-4 h-4 shrink-0 mt-0.5 sm:mt-0" />
-                    <span>Alto risco de paralisação operacional e custo em duplicidade</span>
-                  </div>
-                </div>
-
-                {/* Solution Card: Unified Specialist */}
-                <div className="bg-[#0B1623] text-white border border-slate-800 rounded-xl p-5 sm:p-8 flex flex-col justify-between">
-                  <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-800">
-                      <span className="text-xs font-mono font-semibold text-[#f3c742]">
-                        SOLUÇÃO CENTRALIZADA (THIAGO GONÇALVES · CRT)
-                      </span>
-                      <span className="text-xs font-mono text-slate-300 tabular-nums">
-                        1 Único Responsável
-                      </span>
-                    </div>
-                    <h3 className="mt-4 sm:mt-5 font-display text-lg sm:text-xl font-bold text-white">
-                      {activeAudience.title}
-                    </h3>
-                    <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-                      {activeAudience.unifiedSolution}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-slate-800 flex items-start sm:items-center gap-2.5 text-xs font-medium text-[#f3c742]">
-                    <Check className="w-4 h-4 shrink-0 mt-0.5 sm:mt-0" />
-                    <span>{activeAudience.typicalSavings}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Structured Comparison Table */}
-            <div className="mt-8 sm:mt-10 bg-white border border-slate-200 rounded-xl overflow-hidden">
-              <div className="hidden md:grid md:grid-cols-12 bg-slate-50 border-b border-slate-200 px-6 py-4 text-xs font-mono font-semibold text-slate-600">
-                <div className="md:col-span-3">CRITÉRIO TÉCNICO</div>
-                <div className="md:col-span-4 text-rose-700">
-                  MÚLTIPLOS FORNECEDORES (A DOR)
-                </div>
-                <div className="md:col-span-5 text-[#0B1623]">
-                  GESTÃO TÉCNICA INTEGRADA (A SOLUÇÃO)
-                </div>
-              </div>
-
-              <div className="divide-y divide-slate-200">
-                {COMPARISON_ROWS.map((row) => (
-                  <div
-                    key={row.criterion}
-                    className="grid grid-cols-1 md:grid-cols-12 p-4 sm:px-6 sm:py-5 gap-3 md:gap-4 items-start text-sm"
-                  >
-                    <div className="md:col-span-3 font-bold text-[#0B1623]">
-                      {row.criterion}
-                    </div>
-                    <div className="md:col-span-4 text-slate-600 flex items-start gap-2.5">
-                      <X className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                      <span>{row.fragmented}</span>
-                    </div>
-                    <div className="md:col-span-5 text-slate-900 font-medium flex items-start gap-2.5">
-                      <span className="w-4 h-4 rounded-full bg-[#f3c742] text-[#0B1623] flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 stroke-[2.5]" />
-                      </span>
-                      <span>{row.centralized}</span>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
