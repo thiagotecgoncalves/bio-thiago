@@ -67,27 +67,27 @@ export const CustomizableVisualSlot: React.FC<CustomizableVisualProps> = ({
 
 export const HeroSystemIllustration: React.FC = () => {
   return (
-    <div className="w-full h-full min-h-[300px] sm:min-h-[360px] p-3.5 sm:p-5 lg:p-6 flex flex-col justify-between bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#E2E8F0] select-none">
+    <div className="w-full h-full min-h-[240px] sm:min-h-[280px] lg:min-h-[290px] p-3 sm:p-4 lg:p-4 flex flex-col justify-between bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#E2E8F0] select-none">
       {/* Top Technical Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-slate-300/80 pb-2.5 sm:pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-300/80 pb-2">
         <div>
-          <p className="text-[10px] sm:text-xs font-mono text-slate-500 tracking-tight">
+          <p className="text-[10px] font-mono text-slate-500 tracking-tight">
             ARQUITETURA CENTRALIZADA · RESPONSABILIDADE ÚNICA (CRT/TRT)
           </p>
-          <p className="text-xs sm:text-sm font-semibold text-slate-900 mt-0.5">
+          <p className="text-xs sm:text-xs lg:text-[13px] font-semibold text-slate-900 mt-0.5">
             Topologia Integrada: Segurança, Conectividade e Energia
           </p>
         </div>
-        <span className="text-[11px] sm:text-xs font-mono font-semibold text-[#0051BA] tabular-nums">
+        <span className="text-[10px] sm:text-[11px] font-mono font-semibold text-[#0051BA] tabular-nums">
           NBR 5410 · NBR 17240 · NBR 14565
         </span>
       </div>
 
       {/* Central Visual Hardware Diagram (SimpliSafe Clean Hardware Aesthetic) */}
-      <div className="my-auto py-2 sm:py-3">
+      <div className="my-auto py-1.5 sm:py-2">
         <svg
           viewBox="0 0 680 340"
-          className="w-full h-auto max-h-[290px]"
+          className="w-full h-auto max-h-[190px] sm:max-h-[210px] lg:max-h-[220px]"
           role="img"
           aria-label="Diagrama técnico de integração entre Segurança Eletrônica, Redes e Energia Solar/EV sob gestão técnica única"
         >
@@ -226,23 +226,6 @@ export const HeroSystemIllustration: React.FC = () => {
         </svg>
       </div>
 
-      {/* Bottom Metric Strip inside Hero Visual */}
-      <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-3.5 sm:pt-4 border-t border-slate-300/80 text-left">
-        <div>
-          <p className="text-[11px] sm:text-xs text-slate-500">Interlocutor</p>
-          <p className="text-xs sm:text-sm font-bold text-slate-900 font-mono tabular-nums">100% Único</p>
-        </div>
-        <div>
-          <p className="text-[11px] sm:text-xs text-slate-500">Conformidade</p>
-          <p className="text-xs sm:text-sm font-bold text-slate-900 font-mono tabular-nums">CRT + TRT</p>
-        </div>
-        <div>
-          <p className="text-[11px] sm:text-xs text-slate-500">Terceiros</p>
-          <p className="text-xs sm:text-sm font-bold text-[#0B1623] bg-[#f3c742]/40 px-1.5 py-0.5 rounded inline-block font-mono tabular-nums">
-            Zero Repasse
-          </p>
-        </div>
-      </div>
     </div>
   );
 };

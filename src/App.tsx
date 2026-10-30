@@ -26,6 +26,7 @@ import {
   EnergyPillarIllustration,
   AuthorityEngineerIllustration,
 } from './components/VisualAssets';
+import { DynamicSolutionBlock } from './components/DynamicSolutionBlock';
 
 type AudienceKey = 'empresas' | 'condominios' | 'residencias';
 
@@ -246,7 +247,7 @@ export default function App() {
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white text-[#0B1623] flex flex-col">
       {/* TOP BAR CONTRACT: Fixed in entire landing page (Brand wordmark | 4-5 nav links | 1 Primary WhatsApp CTA) */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-2 sm:gap-8">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-8">
           {/* Zone 1: Single text element wordmark */}
           <a
             href="#"
@@ -295,7 +296,7 @@ export default function App() {
               href={buildWhatsAppUrl('Atendimento Técnico Integrado')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] active:scale-[0.99] text-[#0B1623] text-xs sm:text-sm font-bold shadow-sm transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c742]"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 min-[360px]:px-3 min-[360px]:py-2 sm:px-4 sm:py-2.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] active:scale-[0.99] text-[#0B1623] text-xs sm:text-sm font-bold shadow-sm transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c742]"
             >
               <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>Falar no WhatsApp</span>
@@ -304,20 +305,20 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex-1 pt-16">
-        {/* HERO SECTION — SimpliSafe-inspired High-Trust Minimalist Split Layout */}
-        <section className="pt-3 pb-8 sm:pt-6 sm:pb-12 lg:pt-6 lg:pb-14 bg-white border-b border-slate-200/80">
+      <main className="flex-1 pt-14 sm:pt-16">
+        {/* HERO SECTION — Compact, High-Trust Layout with 100% Zoom Viewport Fit */}
+        <section className="pt-2 pb-4 sm:pt-3 sm:pb-6 lg:pt-3 lg:pb-5 bg-white border-b border-slate-200/80">
           <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
               {/* Left Column: High-Conversion Direct Copywriting */}
-              <div className="lg:col-span-6 flex flex-col justify-between py-0">
+              <div className="lg:col-span-6 flex flex-col justify-start py-0">
                 <div>
-                  <h1 className="font-display text-[1.75rem] sm:text-3xl lg:text-[2.75rem] xl:text-[3.15rem] font-extrabold tracking-tight text-[#0B1623] leading-[1.12] lg:leading-[1.08] [text-wrap:pretty]">
-                    <span className="whitespace-nowrap">Segurança Eletrônica,</span> Redes e Energia, integrados por um único{' '}
+                  <h1 className="font-display text-[1.5rem] xs:text-[1.65rem] sm:text-2xl lg:text-[2.2rem] xl:text-[2.5rem] font-extrabold tracking-tight text-[#0B1623] leading-[1.12] [text-wrap:pretty]">
+                    <span className="sm:whitespace-nowrap">Segurança Eletrônica,</span> Redes e Energia, integrados por um único{' '}
                     <span className="text-[#f3c742] whitespace-nowrap">Responsável Técnico</span>
                   </h1>
 
-                  <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-[1.05rem] text-slate-600 leading-relaxed max-w-[62ch]">
+                  <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[0.95rem] text-slate-600 leading-relaxed max-w-[58ch]">
                     Elimine a falha de comunicação e os vários fornecedores e instaladores de câmeras,
                     técnicos de TI e eletricistas. Centralize{' '}
                     <strong className="font-semibold text-slate-900">
@@ -329,15 +330,15 @@ export default function App() {
                 </div>
 
                 {/* Primary Conversion Block */}
-                <div className="mt-5 sm:mt-6 pt-5 border-t border-slate-200/80">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="mt-3.5 sm:mt-4 pt-3 sm:pt-3.5 border-t border-slate-200/80">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                     <a
                       href={buildWhatsAppUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-4 sm:px-7 py-3 sm:py-3.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c742]"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c742]"
                     >
-                      <MessageCircle className="w-5 h-5 shrink-0" />
+                      <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                       <span className="truncate">Solicitar Diagnóstico via WhatsApp</span>
                       <ArrowRight className="w-4 h-4 shrink-0 hidden sm:inline-block" />
                     </a>
@@ -345,51 +346,47 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Right Column: Studio Technical Architecture Visual (or Custom Project Photo) */}
-              <div className="lg:col-span-6 flex">
-                <CustomizableVisualSlot
-                  slotId="hero"
-                  customImage={customImages['hero']}
-                  onImageChange={handleImageChange}
-                  alt="Integração técnica de sistemas de segurança, redes e energia por Thiago Gonçalves"
-                  className="w-full rounded-xl lg:h-full"
-                >
-                  <HeroSystemIllustration />
-                </CustomizableVisualSlot>
+              {/* Right Column: Dynamic Interactive Solution Block (Residências, Condomínios, Empresas) */}
+              <div className="lg:col-span-6 w-full min-w-0 flex flex-col justify-center">
+                <DynamicSolutionBlock
+                  activeSolution={selectedAudience}
+                  onSelectSolution={(tab) => setSelectedAudience(tab)}
+                  buildWhatsAppUrl={buildWhatsAppUrl}
+                />
               </div>
             </div>
 
-            {/* Full-Width 4-Column Quantitative Proof Row Below Hero Split */}
-            <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-slate-200 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            {/* Full-Width 4-Column Quantitative Proof Row Below Hero Split - Tightly spaced */}
+            <div className="mt-3.5 sm:mt-4 pt-3 sm:pt-3.5 border-t border-slate-200 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
               <div>
-                <p className="font-display text-xl sm:text-3xl lg:text-2xl xl:text-3xl font-extrabold text-[#0B1623] font-mono tabular-nums whitespace-nowrap">
+                <p className="font-display text-base sm:text-xl xl:text-2xl font-extrabold text-[#0B1623] font-mono tabular-nums whitespace-nowrap">
                   10 Anos
                 </p>
-                <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-snug">
+                <p className="mt-0.5 text-xs text-slate-600 leading-snug">
                   De atuação prática integrando infraestrutura crítica em campo.
                 </p>
               </div>
               <div>
-                <p className="font-display text-xl sm:text-3xl lg:text-2xl xl:text-3xl font-extrabold text-[#0B1623] font-mono tabular-nums whitespace-nowrap">
+                <p className="font-display text-base sm:text-xl xl:text-2xl font-extrabold text-[#0B1623] font-mono tabular-nums whitespace-nowrap">
                   3 em 1
                 </p>
-                <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-snug">
+                <p className="mt-0.5 text-xs text-slate-600 leading-snug">
                   Segurança Eletrônica, Redes/Telecom e Eletrotécnica unificadas.
                 </p>
               </div>
               <div>
-                <p className="font-display text-xl sm:text-3xl lg:text-2xl xl:text-3xl font-extrabold text-[#f3c742] font-mono tabular-nums whitespace-nowrap">
+                <p className="font-display text-base sm:text-xl xl:text-2xl font-extrabold text-[#f3c742] font-mono tabular-nums whitespace-nowrap">
                   100% CRT
                 </p>
-                <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-snug">
+                <p className="mt-0.5 text-xs text-slate-600 leading-snug">
                   Habilitação legal ativa com emissão de TRT para obras e laudos.
                 </p>
               </div>
               <div>
-                <p className="font-display text-xl sm:text-3xl lg:text-2xl xl:text-3xl font-extrabold text-[#f3c742] font-mono tabular-nums whitespace-nowrap">
+                <p className="font-display text-base sm:text-xl xl:text-2xl font-extrabold text-[#f3c742] font-mono tabular-nums whitespace-nowrap">
                   Zero Conflito
                 </p>
-                <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-snug">
+                <p className="mt-0.5 text-xs text-slate-600 leading-snug">
                   Fim das visitas cobradas em duplicidade por terceiros desconectados.
                 </p>
               </div>
