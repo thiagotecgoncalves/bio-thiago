@@ -144,7 +144,7 @@ const FAQ_ITEMS = [
 
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const [selectedAudience, setSelectedAudience] = useState<AudienceKey>('empresas');
+  const [selectedAudience, setSelectedAudience] = useState<AudienceKey>('residencias');
   const [selectedScope, setSelectedScope] = useState<string[]>(['cftv', 'rede', 'ev']);
   const [whatsappNumber, setWhatsappNumber] = useState<string>('5567996294838');
   const [isEditingPhone, setIsEditingPhone] = useState<boolean>(false);

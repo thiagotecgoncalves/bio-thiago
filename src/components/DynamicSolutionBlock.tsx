@@ -32,7 +32,7 @@ export const DynamicSolutionBlock: React.FC<DynamicSolutionBlockProps> = ({
 
   const getCurrentImageSrc = () => {
     if (currentTab === 'residencias') return '/assets/aistudio/Folder-solu__es-totus_20261029_211038_0000_9b6d5217.png';
-    if (currentTab === 'condominios') return '/assets/aistudio/Folder-solu__es-totus_20261029_211338_0000_3f65bae2.png';
+    if (currentTab === 'condominios') return '/assets/aistudio/Folder-solu__es-totus_condominios_same_size.png';
     return null;
   };
 
@@ -96,7 +96,7 @@ export const DynamicSolutionBlock: React.FC<DynamicSolutionBlockProps> = ({
       {/* 2. CENTER CONTENT: EXPANDED PROPORTIONS ORIGINAL FOLDER */}
       <div className="flex-1 p-1 sm:p-2 bg-[#FCFCFD] flex items-center justify-center min-h-[260px] sm:min-h-[380px] lg:min-h-[460px] relative">
         {currentImageSrc ? (
-          <div className="w-full h-full flex items-center justify-center rounded-lg overflow-hidden border border-slate-200/80 bg-[#f3c742]/10">
+          <div className="w-full h-full flex items-center justify-center rounded-lg overflow-hidden border border-slate-200/80 bg-[#f0c54d]">
             <img
               src={currentImageSrc}
               alt={getImageTitle()}
