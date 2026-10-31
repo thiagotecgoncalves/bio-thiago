@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import {
   MessageCircle,
   Check,
+  CheckCircle2,
   X,
   ArrowRight,
   ShieldCheck,
@@ -40,70 +41,76 @@ const AUDIENCE_PROFILES: Record<AudienceKey, { label: string }> = {
 const SERVICE_PILLARS = [
   {
     id: 'pillar-security',
-    number: '01.',
-    category: 'PROTEÇÃO PATRIMONIAL E VIDA',
     title: 'Segurança Eletrônica e Controle de Acesso',
     subtitle:
-      'Projetos de prevenção e resposta desenhados por Gestor de Segurança, com alimentação elétrica e rede de dados imunes a sabotagem ou queda de tensão.',
-    specs: 'CFTV IP Analítico · SDAI (NBR 17240) · Controle de Acesso',
+      'Projetos de prevenção e resposta com alimentação e rede imunes a sabotagem ou queda de tensão.',
+    specs: 'CFTV IP · Alarme Perimetral · Incêndio · Acesso',
     items: [
       {
         name: 'CFTV IP de Alta Definição e Analíticos',
-        desc: 'Câmeras PoE com leitura de placas (LPR), cercamento virtual e gravação redundante local/nuvem.',
+        desc: 'Câmeras PoE com leitura de placas (LPR), cercamento virtual e gravação redundante.',
       },
       {
-        name: 'SDAI — Detecção e Alarme de Incêndio',
-        desc: 'Centrais endereçáveis, detectores ópticos/termovelocimétricos e laudo técnico com emissão de TRT.',
+        name: 'Alarme Perimetral',
+        desc: 'Instalação de sensores de barreira e presença, cercas elétricas e concertinas.',
+      },
+      {
+        name: 'Detecção e Alarme de Incêndio',
+        desc: 'Centrais endereçáveis, detectores e laudo técnico com emissão de TRT.',
       },
       {
         name: 'Controle de Acesso Físico e Portaria',
-        desc: 'Terminais faciais antifraude, biometria, catracas, clausuras veiculares e intertravamento eletromecânico.',
+        desc: 'Terminais faciais antifraude, biometria, catracas e clausuras veiculares.',
       },
     ],
   },
   {
     id: 'pillar-network',
-    number: '02.',
-    category: 'CONECTIVIDADE DE MISSÃO CRÍTICA',
     title: 'Infraestrutura de Redes e Telecom',
     subtitle:
-      'Sem rede estável, câmeras, portarias e inversores solares ficam cegos. Construímos a espinha dorsal física e lógica para disponibilidade contínua.',
-    specs: 'Cabeamento Cat6A/Fibra · Failover Dual-WAN · Wi-Fi Corporativo',
+      'Espinha dorsal física e lógica de alta velocidade para comunicação estável e sem interrupções.',
+    specs: 'Cabeamento Cat6A/Fibra · Failover WAN · Wi-Fi',
     items: [
       {
-        name: 'Cabeamento Estruturado e Organização de Racks',
-        desc: 'Saneamento de racks críticos, certificação de pontos Cat6/Cat6A, fusão de fibra óptica e identificação técnica.',
+        name: 'Cabeamento Estruturado e Racks',
+        desc: 'Saneamento e organização de racks, certificação Cat6/Cat6A e fusão óptica.',
       },
       {
-        name: 'Redundância de Internet e Failover Automático',
-        desc: 'Balanceamento de carga entre múltiplas operadoras e backup 4G/5G/Starlink sem queda de sessão.',
+        name: 'Redundância de Internet e Failover',
+        desc: 'Balanceamento entre operadoras e backup automático sem queda de sessão.',
       },
       {
-        name: 'Wi-Fi Corporativo e Residencial de Alta Densidade',
-        desc: 'Mapa de calor (Site Survey), Access Points gerenciáveis em teto/parede e rede isolada (VLAN) para visitantes e IoT.',
+        name: 'Wi-Fi Corporativo e Alta Densidade',
+        desc: 'Access Points de alta cobertura, roaming contínuo e rede isolada de visitantes.',
+      },
+      {
+        name: 'Segurança Lógica e Segmentação (VLAN)',
+        desc: 'Isolamento de tráfego crítico para CFTV, automação e dados administrativos.',
       },
     ],
   },
   {
     id: 'pillar-energy',
-    number: '03.',
-    category: 'AUTONOMIA ENERGÉTICA E ELETROMOBILIDADE',
     title: 'Energia Solar e Carregadores Veiculares',
     subtitle:
-      'Engenharia eletrotécnica aplicada para reduzir custos fixos de energia, garantir operação durante apagões e viabilizar a recarga de veículos elétricos com segurança.',
-    specs: 'Solar On-Grid / Off-Grid Híbrido · Wallbox EV · Adequação NBR 5410',
+      'Engenharia eletrotécnica aplicada para reduzir custos, garantir autonomia e recarga com segurança.',
+    specs: 'Solar On/Off-Grid · Wallbox EV · Adequação NBR 5410',
     items: [
       {
-        name: 'Sistemas Fotovoltaicos On-Grid, Off-Grid e Híbridos',
-        desc: 'Homologação na concessionária, inversores híbridos com banco de baterias LiFePO4 para backup de cargas críticas.',
+        name: 'Sistemas Fotovoltaicos On-Grid e Híbridos',
+        desc: 'Homologação na concessionária e backup com banco de baterias para cargas críticas.',
       },
       {
-        name: 'Infraestrutura para Carregadores Veiculares (EV)',
-        desc: 'Instalação de estações Wallbox em condomínios, empresas e residências com proteção residual (DR Tipo B) e medição individual.',
+        name: 'Carregadores Veiculares (Wallbox EV)',
+        desc: 'Instalação de estações de recarga com proteção DR Tipo B e medição individual.',
       },
       {
-        name: 'Automação de Quadros e Proteção contra Surtos',
-        desc: 'Reforma de QGBTs, coordenação de DPS (proteção contra raios), aterramento técnico e gestão inteligente de cargas.',
+        name: 'Quadros Elétricos e Proteção contra Surtos',
+        desc: 'Reforma de QGBTs, coordenação de DPS (raios), aterramento técnico e laudo NBR 5410.',
+      },
+      {
+        name: 'Automação de Força e Geradores',
+        desc: 'Comandos inteligentes para acionamento de bombas, iluminação e geradores.',
       },
     ],
   },
@@ -111,7 +118,8 @@ const SERVICE_PILLARS = [
 
 const SCOPE_OPTIONS = [
   { id: 'cftv', label: 'CFTV IP & Monitoramento Perimetral', pillar: 'Segurança' },
-  { id: 'sdai', label: 'SDAI (Alarme de Incêndio NBR 17240)', pillar: 'Segurança' },
+  { id: 'perimetral', label: 'Alarme Perimetral, Cercas e Concertinas', pillar: 'Segurança' },
+  { id: 'sdai', label: 'Detecção e Alarme de Incêndio (NBR 17240)', pillar: 'Segurança' },
   { id: 'acesso', label: 'Controle de Acesso Facial / Portaria', pillar: 'Segurança' },
   { id: 'rede', label: 'Cabeamento Estruturado / Reforma de Rack', pillar: 'Redes' },
   { id: 'wifi', label: 'Wi-Fi de Alta Cobertura & Failover de Internet', pillar: 'Redes' },
@@ -189,12 +197,27 @@ export default function App() {
       {/* TOP BAR: Fixed in entire landing page (Brand wordmark | Desktop Links | Mobile Menu + WhatsApp CTA) */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         <div className="max-w-[1240px] mx-auto px-3 sm:px-8 h-14 sm:h-16 flex items-center justify-between gap-2">
-          {/* Zone 1: Single text element wordmark */}
+          {/* Zone 1: Single text element wordmark with Avatar */}
           <a
             href="#"
-            className="font-display text-xs min-[360px]:text-sm sm:text-lg font-extrabold tracking-tight text-[#0B1623] whitespace-nowrap shrink-0"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              if (window.location.hash) {
+                window.history.pushState(null, '', window.location.pathname);
+              }
+            }}
+            className="flex items-center gap-2 sm:gap-2.5 group shrink-0 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f3c742] rounded-lg p-0.5 cursor-pointer"
+            title="Início"
           >
-            THIAGO GONÇALVES
+            <img
+              src="/assets/aistudio/avatar-totus_2eb586d9.png"
+              alt="Thiago Gonçalves"
+              className="w-7 h-7 min-[360px]:w-8 min-[360px]:h-8 sm:w-9 sm:h-9 rounded-full object-cover object-top border-2 border-[#f3c742] shadow-xs group-hover:scale-105 transition-transform bg-slate-100"
+            />
+            <span className="font-display text-xs min-[360px]:text-sm sm:text-lg font-extrabold tracking-tight text-[#0B1623] whitespace-nowrap">
+              THIAGO GONÇALVES
+            </span>
           </a>
 
           {/* Zone 2: Concise single-line navigation links (Desktop) */}
@@ -337,19 +360,27 @@ export default function App() {
       )}
 
       <main className="flex-1 pt-14 sm:pt-16">
-        {/* HERO SECTION — Compact, High-Trust Layout with 100% Zoom Viewport Fit */}
-        <section className="pt-2 pb-4 sm:pt-3 sm:pb-6 lg:pt-3 lg:pb-5 bg-white border-b border-slate-200/80">
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+        {/* HERO SECTION — Compact, Viewport-Balanced High-Trust Layout */}
+        <section
+          id="inicio"
+          className="lg:min-h-[calc(100vh-4rem)] flex flex-col justify-between pt-2 sm:pt-3 lg:pt-4 pb-0 bg-white border-b border-slate-200/80"
+        >
+          <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full flex-1 flex flex-col justify-center my-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center py-2 sm:py-3">
               {/* Left Column: High-Conversion Direct Copywriting */}
-              <div className="lg:col-span-6 flex flex-col justify-start py-0">
+              <div className="lg:col-span-6 flex flex-col justify-center">
                 <div>
-                  <h1 className="font-display text-[1.5rem] xs:text-[1.65rem] sm:text-2xl lg:text-[2.2rem] xl:text-[2.5rem] font-extrabold tracking-tight text-[#0B1623] leading-[1.12] [text-wrap:pretty]">
+                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-700 w-fit mb-2 sm:mb-2.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>CFTV IP · Redes Estruturadas · Eletrotécnica &amp; TRT</span>
+                  </div>
+
+                  <h1 className="font-display text-[1.4rem] xs:text-[1.55rem] sm:text-2xl lg:text-[1.95rem] xl:text-[2.2rem] font-extrabold tracking-tight text-[#0B1623] leading-[1.12] [text-wrap:pretty]">
                     <span className="sm:whitespace-nowrap">Segurança Eletrônica,</span> Redes e Energia, integrados por um único{' '}
                     <span className="text-[#f3c742] whitespace-nowrap">Responsável Técnico</span>
                   </h1>
 
-                  <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[0.95rem] text-slate-600 leading-relaxed max-w-[58ch]">
+                  <p className="mt-2 sm:mt-2.5 text-xs sm:text-sm lg:text-[0.92rem] text-slate-600 leading-relaxed max-w-[56ch]">
                     Elimine a falha de comunicação e os vários fornecedores e instaladores de câmeras,
                     técnicos de TI e eletricistas. Centralize{' '}
                     <strong className="font-semibold text-slate-900">
@@ -361,34 +392,49 @@ export default function App() {
                 </div>
 
                 {/* Primary Conversion Block */}
-                <div className="mt-3.5 sm:mt-4 pt-3 sm:pt-3.5 border-t border-slate-200/80">
+                <div className="mt-3 sm:mt-3.5 pt-2.5 sm:pt-3 border-t border-slate-200/80">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                     <a
                       href={buildWhatsAppUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c742]"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] active:scale-[0.99] text-[#0B1623] text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c742]"
                     >
                       <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                       <span className="truncate">Solicitar Diagnóstico via WhatsApp</span>
                       <ArrowRight className="w-4 h-4 shrink-0 hidden sm:inline-block" />
                     </a>
                   </div>
+
+                  <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] sm:text-xs text-slate-500">
+                    <span className="flex items-center gap-1.5 font-medium text-slate-700">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      Atendimento direto com Thiago
+                    </span>
+                    <span className="flex items-center gap-1.5 font-medium text-slate-700">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      Emissão de TRT (CRT Ativo)
+                    </span>
+                  </div>
                 </div>
               </div>
 
               {/* Right Column: Dynamic Interactive Solution Block (Residências, Condomínios, Empresas) */}
-              <div className="lg:col-span-6 w-full min-w-0 flex flex-col justify-center">
-                <DynamicSolutionBlock
-                  activeSolution={selectedAudience}
-                  onSelectSolution={(tab) => setSelectedAudience(tab)}
-                  buildWhatsAppUrl={buildWhatsAppUrl}
-                />
+              <div className="lg:col-span-6 w-full min-w-0 flex flex-col justify-center items-center lg:items-end">
+                <div className="w-full max-w-[390px] sm:max-w-[420px] lg:max-w-[430px]">
+                  <DynamicSolutionBlock
+                    activeSolution={selectedAudience}
+                    onSelectSolution={(tab) => setSelectedAudience(tab)}
+                    buildWhatsAppUrl={buildWhatsAppUrl}
+                  />
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Full-Width 4-Column Quantitative Proof Row Below Hero Split - Tightly spaced */}
-            <div className="mt-3.5 sm:mt-4 pt-3 sm:pt-3.5 border-t border-slate-200 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
+          {/* Full-Width 4-Column Quantitative Proof Row Below Hero Split - Docked cleanly at bottom */}
+          <div className="w-full border-t border-slate-200/90 bg-[#FBFBFC]">
+            <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-3 sm:py-3.5 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-6">
               <div>
                 <p className="font-display text-base sm:text-xl xl:text-2xl font-extrabold text-[#0B1623] font-mono tabular-nums whitespace-nowrap">
                   10 Anos
@@ -426,68 +472,60 @@ export default function App() {
         </section>
 
         {/* SECTION: GRID DE SERVIÇOS (3 PILARES DE ENGENHARIA E GESTÃO) */}
-        <section id="servicos" className="py-14 sm:py-20 lg:py-28 bg-white border-b border-slate-200/80">
+        <section
+          id="servicos"
+          className="scroll-mt-16 sm:scroll-mt-20 pt-6 sm:pt-10 pb-8 sm:pb-12 bg-white border-b border-slate-200/80"
+        >
           <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
-              <div className="max-w-2xl">
-                <p className="text-xs font-mono font-semibold text-[#0051BA] tracking-wider">
-                  ESCOPO TÉCNICO INTEGRADO
-                </p>
-                <h2 className="mt-2 font-display text-2xl sm:text-4xl font-extrabold text-[#0B1623] tracking-tight">
-                  Três pilares de infraestrutura sob uma única diretriz executiva.
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
+              <div>
+                <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#0B1623] tracking-tight">
+                  Pilares Técnicos
                 </h2>
+                <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                  Engenharia e gestão unificada com documentação técnica e emissão de TRT.
+                </p>
               </div>
-              <p className="text-sm text-slate-600 max-w-md">
-                Todos os projetos são entregues com documentação técnica, identificação de cabos e quadros,
-                e emissão de Termo de Responsabilidade Técnica (TRT).
-              </p>
             </div>
 
             {/* 3 Pillars Grid */}
-            <div className="mt-8 sm:mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
               {SERVICE_PILLARS.map((pillar, idx) => (
                 <article
                   key={pillar.id}
-                  className="border border-slate-200 rounded-xl bg-white flex flex-col justify-between overflow-hidden"
+                  className="border border-slate-200 rounded-xl bg-white flex flex-col justify-between overflow-hidden shadow-xs hover:border-slate-300 transition-colors h-full"
                 >
-                  <div>
-                    {/* Visual Slot with Custom Upload Support */}
+                  <div className="flex flex-col flex-1">
+                    {/* Visual Slot with Custom Upload Support - Standardized Height */}
                     <CustomizableVisualSlot
                       slotId={pillar.id}
                       customImage={customImages[pillar.id]}
                       onImageChange={handleImageChange}
                       alt={pillar.title}
-                      className="border-b border-slate-200"
+                      className="border-b border-slate-200 h-28 sm:h-32 w-full flex items-center justify-center overflow-hidden bg-[#F4F5F7]"
                     >
                       {idx === 0 && <SecurityPillarIllustration />}
                       {idx === 1 && <NetworkPillarIllustration />}
                       {idx === 2 && <EnergyPillarIllustration />}
                     </CustomizableVisualSlot>
 
-                    <div className="p-5 sm:p-7">
-                      {/* Editorial Numbering & Category */}
-                      <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-                        <span className="font-bold text-[#0051BA]">{pillar.number}</span>
-                        <span aria-hidden="true">·</span>
-                        <span>{pillar.category}</span>
-                      </div>
-
-                      <h3 className="mt-2.5 font-display text-lg sm:text-xl font-bold text-[#0B1623]">
+                    <div className="p-3.5 sm:p-4 flex flex-col flex-1">
+                      <h3 className="font-display text-sm sm:text-base font-bold text-[#0B1623] leading-snug">
                         {pillar.title}
                       </h3>
 
-                      <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                      <p className="mt-1 text-xs text-slate-600 leading-snug min-h-[32px]">
                         {pillar.subtitle}
                       </p>
 
                       {/* Detailed Sub-services */}
-                      <div className="mt-6 pt-6 border-t border-slate-100 space-y-4">
+                      <div className="mt-3 pt-3 border-t border-slate-100 space-y-2 flex-1">
                         {pillar.items.map((item) => (
-                          <div key={item.name}>
-                            <h4 className="text-sm font-semibold text-[#0B1623]">
+                          <div key={item.name} className="text-left">
+                            <h4 className="text-xs font-bold text-[#0B1623] leading-tight">
                               {item.name}
                             </h4>
-                            <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                            <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
                               {item.desc}
                             </p>
                           </div>
@@ -497,18 +535,18 @@ export default function App() {
                   </div>
 
                   {/* Card Footer Action */}
-                  <div className="px-5 sm:px-7 py-4 bg-[#F8FAFC] border-t border-slate-200/80 flex items-center justify-between gap-3">
-                    <span className="text-[11px] font-mono text-slate-500 truncate">
+                  <div className="px-3.5 sm:px-4 py-2.5 bg-[#F8FAFC] border-t border-slate-200/80 flex items-center justify-between gap-2 mt-auto">
+                    <span className="text-[10px] font-mono text-slate-500 truncate">
                       {pillar.specs}
                     </span>
                     <a
                       href={buildWhatsAppUrl(pillar.title)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-bold text-[#0B1623] bg-[#f3c742] hover:bg-[#eab825] px-3 py-1.5 rounded-md inline-flex items-center gap-1 whitespace-nowrap shrink-0 transition-colors"
+                      className="text-[11px] font-bold text-[#0B1623] bg-[#f3c742] hover:bg-[#eab825] px-2.5 py-1 rounded-md inline-flex items-center gap-1 whitespace-nowrap shrink-0 transition-colors"
                     >
                       <span>Orçar pilar</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-3 h-3" />
                     </a>
                   </div>
                 </article>
@@ -518,7 +556,10 @@ export default function App() {
         </section>
 
         {/* SECTION: INTERACTIVE SCOPE CONFIGURATOR (Lead Qualifier -> Direct WhatsApp CTA) */}
-        <section id="escopo" className="py-14 sm:py-20 lg:py-24 bg-[#F4F5F7] border-b border-slate-200/90">
+        <section
+          id="escopo"
+          className="scroll-mt-16 sm:scroll-mt-20 py-14 sm:py-20 lg:py-24 bg-[#F4F5F7] border-b border-slate-200/90"
+        >
           <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
             <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-10 lg:p-12">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-start">
@@ -630,7 +671,10 @@ export default function App() {
         </section>
 
         {/* SECTION: AUTORIDADE TÉCNICA (CRT, EMISSÃO DE TRT & 10 ANOS DE EXPERIÊNCIA) */}
-        <section id="autoridade" className="py-14 sm:py-20 lg:py-28 bg-white border-b border-slate-200/80">
+        <section
+          id="autoridade"
+          className="scroll-mt-16 sm:scroll-mt-20 py-14 sm:py-20 lg:py-28 bg-white border-b border-slate-200/80"
+        >
           <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-stretch">
               {/* Left Column: Authority Visual / Engineer Portrait Slot */}
@@ -736,7 +780,10 @@ export default function App() {
         </section>
 
         {/* SECTION: FAQ (Objection Handling) */}
-        <section id="faq" className="py-14 sm:py-20 bg-[#F4F5F7] border-b border-slate-200">
+        <section
+          id="faq"
+          className="scroll-mt-16 sm:scroll-mt-20 py-14 sm:py-20 bg-[#F4F5F7] border-b border-slate-200"
+        >
           <div className="max-w-[900px] mx-auto px-4 sm:px-8">
             <div className="text-center">
               <p className="text-xs font-mono font-semibold text-[#0051BA] tracking-wider">
@@ -820,9 +867,16 @@ export default function App() {
         <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-slate-800/80 text-sm">
             <div className="md:col-span-5">
-              <p className="font-display text-lg font-extrabold tracking-tight text-white">
-                THIAGO GONÇALVES
-              </p>
+              <div className="flex items-center gap-3">
+                <img
+                  src="/assets/aistudio/avatar-totus_2eb586d9.png"
+                  alt="Thiago Gonçalves"
+                  className="w-10 h-10 rounded-full object-cover object-top border-2 border-[#f3c742] shadow-sm bg-slate-800"
+                />
+                <p className="font-display text-lg font-extrabold tracking-tight text-white">
+                  THIAGO GONÇALVES
+                </p>
+              </div>
               <p className="mt-2 text-xs text-slate-400 max-w-sm leading-relaxed">
                 Gestão de Segurança Patrimonial e Técnica Eletrotécnica (CRT). Projeto, execução e
                 manutenção unificada de Segurança Eletrônica, Redes Estruturadas e Energia Solar/EV.

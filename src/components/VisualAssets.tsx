@@ -21,13 +21,13 @@ export const CustomizableVisualSlot: React.FC<CustomizableVisualProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className={`relative group overflow-hidden bg-[#F4F5F7] border border-slate-200/90 ${className}`}>
+    <div className={`relative group overflow-hidden bg-[#F4F5F7] ${className}`}>
       {customImage ? (
         <img
           src={customImage}
           alt={alt}
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain sm:object-cover"
         />
       ) : (
         children
@@ -231,8 +231,8 @@ export const HeroSystemIllustration: React.FC = () => {
 };
 
 export const SecurityPillarIllustration: React.FC = () => (
-  <div className="w-full h-48 sm:h-56 bg-[#F4F5F7] flex items-center justify-center p-4 sm:p-6">
-    <svg viewBox="0 0 400 180" className="w-full h-full" role="img" aria-label="Ilustração de Câmera IP, Controle de Acesso Facial e Detector de Incêndio SDAI">
+  <div className="w-full h-full bg-[#F4F5F7] flex items-center justify-center p-2 sm:p-2.5">
+    <svg viewBox="0 0 400 180" className="w-full h-full max-h-full" role="img" aria-label="Ilustração de Câmera IP, Controle de Acesso Facial e Detecção e Alarme de Incêndio">
       {/* Clean Architectural Backdrop */}
       <rect x="16" y="14" width="368" height="152" rx="8" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
       
@@ -249,14 +249,14 @@ export const SecurityPillarIllustration: React.FC = () => (
       {/* Divider */}
       <line x1="150" y1="34" x2="150" y2="146" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="3 3" />
 
-      {/* 2. SDAI Fire Detection */}
+      {/* 2. Fire Detection */}
       <g transform="translate(168, 36)">
         <circle cx="32" cy="34" r="24" fill="#F8FAFC" stroke="#0B1623" strokeWidth="1.8" />
         <circle cx="32" cy="34" r="14" fill="#FFFFFF" stroke="#94A3B8" strokeWidth="1.2" />
         <circle cx="27" cy="34" r="2.5" fill="#DC2626" />
         <circle cx="37" cy="34" r="2.5" fill="#0051BA" />
-        <text x="32" y="84" textAnchor="middle" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">SDAI</text>
-        <text x="32" y="98" textAnchor="middle" fill="#64748B" fontSize="9.5" fontFamily="JetBrains Mono, monospace">NBR 17240</text>
+        <text x="32" y="84" textAnchor="middle" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">Incêndio</text>
+        <text x="32" y="98" textAnchor="middle" fill="#64748B" fontSize="9.5" fontFamily="JetBrains Mono, monospace">Detecção e Alarme</text>
       </g>
 
       {/* Divider */}
@@ -277,8 +277,8 @@ export const SecurityPillarIllustration: React.FC = () => (
 );
 
 export const NetworkPillarIllustration: React.FC = () => (
-  <div className="w-full h-48 sm:h-56 bg-[#F4F5F7] flex items-center justify-center p-4 sm:p-6">
-    <svg viewBox="0 0 400 180" className="w-full h-full" role="img" aria-label="Ilustração de Rack de Cabeamento Estruturado, Failover Automático e Wi-Fi Corporativo">
+  <div className="w-full h-full bg-[#F4F5F7] flex items-center justify-center p-2 sm:p-2.5">
+    <svg viewBox="0 0 400 180" className="w-full h-full max-h-full" role="img" aria-label="Ilustração de Rack de Cabeamento Estruturado, Failover Automático e Wi-Fi Corporativo">
       <rect x="16" y="14" width="368" height="152" rx="8" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
 
       {/* Structured Rack Patch Panel */}
@@ -315,7 +315,7 @@ export const NetworkPillarIllustration: React.FC = () => (
       <g transform="translate(242, 32)">
         <circle cx="58" cy="38" r="34" fill="#F8FAFC" stroke="#0B1623" strokeWidth="1.8" />
         <circle cx="58" cy="38" r="20" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1.2" />
-        <circle cx="58" cy="38" r="6" fill="#0051BA" />
+        <circle cx="58" cy="6" fill="#0051BA" />
         <text x="58" y="98" textAnchor="middle" fill="#0B1623" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">Wi-Fi Corporativo</text>
         <text x="58" y="112" textAnchor="middle" fill="#64748B" fontSize="9.5" fontFamily="JetBrains Mono, monospace">Roaming Zero-Handoff</text>
       </g>
@@ -324,8 +324,8 @@ export const NetworkPillarIllustration: React.FC = () => (
 );
 
 export const EnergyPillarIllustration: React.FC = () => (
-  <div className="w-full h-48 sm:h-56 bg-[#F4F5F7] flex items-center justify-center p-4 sm:p-6">
-    <svg viewBox="0 0 400 180" className="w-full h-full" role="img" aria-label="Ilustração de Inversor Solar Híbrido On/Off-Grid e Carregador Veicular EV">
+  <div className="w-full h-full bg-[#F4F5F7] flex items-center justify-center p-2 sm:p-2.5">
+    <svg viewBox="0 0 400 180" className="w-full h-full max-h-full" role="img" aria-label="Ilustração de Inversor Solar Híbrido On/Off-Grid e Carregador Veicular EV">
       <rect x="16" y="14" width="368" height="152" rx="8" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
 
       {/* Hybrid Solar Inverter */}
@@ -376,14 +376,21 @@ export const AuthorityEngineerIllustration: React.FC = () => (
 
     {/* Visual Blueprint / Technical Seal Card */}
     <div className="my-5 sm:my-6 bg-slate-900/90 border border-slate-700/90 rounded-lg p-4 sm:p-5 space-y-4">
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 border-b border-slate-800 pb-3.5">
-        <div>
-          <p className="text-xs text-slate-400">Responsável Técnico Habilitado</p>
-          <p className="text-sm font-semibold text-white mt-0.5">
-            Thiago Gonçalves · Gestor de Segurança &amp; Eletrotécnico
-          </p>
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-slate-800 pb-3.5">
+        <div className="flex items-center gap-3">
+          <img
+            src="/assets/aistudio/avatar-totus_2eb586d9.png"
+            alt="Thiago Gonçalves"
+            className="w-10 h-10 rounded-full object-cover object-top border-2 border-[#f3c742] shrink-0"
+          />
+          <div>
+            <p className="text-xs text-slate-400">Responsável Técnico Habilitado</p>
+            <p className="text-sm font-semibold text-white mt-0.5">
+              Thiago Gonçalves · Gestor de Segurança &amp; Eletrotécnico
+            </p>
+          </div>
         </div>
-        <span className="text-xs font-mono text-[#f3c742] font-semibold">
+        <span className="text-xs font-mono text-[#f3c742] font-semibold self-start sm:self-auto">
           HABILITAÇÃO PLENA
         </span>
       </div>

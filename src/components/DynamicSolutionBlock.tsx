@@ -33,6 +33,7 @@ export const DynamicSolutionBlock: React.FC<DynamicSolutionBlockProps> = ({
   const getCurrentImageSrc = () => {
     if (currentTab === 'residencias') return '/assets/aistudio/Folder-solu__es-totus_20261029_211038_0000_9b6d5217.png';
     if (currentTab === 'condominios') return '/assets/aistudio/Folder-solu__es-totus_condominios_same_size.png';
+    if (currentTab === 'empresas') return '/assets/aistudio/banner-empresas-same-size.svg';
     return null;
   };
 
@@ -93,21 +94,21 @@ export const DynamicSolutionBlock: React.FC<DynamicSolutionBlockProps> = ({
         </div>
       </div>
 
-      {/* 2. CENTER CONTENT: EXPANDED PROPORTIONS ORIGINAL FOLDER */}
-      <div className="flex-1 p-1 sm:p-2 bg-[#FCFCFD] flex items-center justify-center min-h-[260px] sm:min-h-[380px] lg:min-h-[460px] relative">
+      {/* 2. CENTER CONTENT: BALANCED PROPORTIONS TO FIT 100% ZOOM VIEWPORT */}
+      <div className="flex-1 p-1 sm:p-1.5 bg-[#FCFCFD] flex items-center justify-center min-h-[190px] sm:min-h-[240px] lg:min-h-[280px] relative">
         {currentImageSrc ? (
-          <div className="w-full h-full flex items-center justify-center rounded-lg overflow-hidden border border-slate-200/80 bg-[#f0c54d]">
+          <div className="w-full flex items-center justify-center rounded-lg overflow-hidden border border-slate-200/80 bg-[#f0c54d]">
             <img
               src={currentImageSrc}
               alt={getImageTitle()}
-              className="w-full h-auto max-h-[440px] sm:max-h-[520px] lg:max-h-[560px] object-contain rounded-md"
+              className="w-full h-auto max-h-[290px] sm:max-h-[320px] lg:max-h-[335px] xl:max-h-[350px] object-contain rounded-md"
             />
           </div>
         ) : (
-          /* EMPTY STATE FOR EMPRESAS - Compact, well-proportioned and mobile-friendly */
-          <div className="w-full h-full flex flex-col items-center justify-center text-center p-3.5 sm:p-6 bg-slate-50/70 border border-dashed border-slate-300 rounded-lg">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#f3c742]/20 border border-[#f3c742] flex items-center justify-center text-[#0B1623] mb-2 sm:mb-2.5">
-              <Clock className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+          /* EMPTY STATE FOR EMPRESAS - Compact, well-proportioned and matching height */
+          <div className="w-full min-h-[290px] sm:min-h-[320px] lg:min-h-[335px] xl:min-h-[350px] flex flex-col items-center justify-center text-center p-3.5 sm:p-5 bg-slate-50/70 border border-dashed border-slate-300 rounded-lg">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#f3c742]/20 border border-[#f3c742] flex items-center justify-center text-[#0B1623] mb-2">
+              <Clock className="w-5 h-5 sm:w-5 sm:h-5 stroke-[2]" />
             </div>
             <h3 className="font-display font-bold text-xs sm:text-base text-slate-900">
               Soluções para Empresas &amp; Indústrias
