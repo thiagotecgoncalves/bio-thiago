@@ -9,10 +9,6 @@ import {
   Check,
   X,
   ArrowRight,
-  ShieldCheck,
-  FileCheck2,
-  Award,
-  SlidersHorizontal,
   Building2,
   Home,
   Factory,
@@ -25,7 +21,6 @@ import {
   SecurityPillarIllustration,
   NetworkPillarIllustration,
   EnergyPillarIllustration,
-  AuthorityEngineerIllustration,
 } from './components/VisualAssets';
 import { DynamicSolutionBlock } from './components/DynamicSolutionBlock';
 
@@ -133,7 +128,7 @@ const FAQ_ITEMS = [
   {
     question: 'Por que contratar um único profissional em vez de empresas separadas para CFTV, Rede e Elétrica?',
     answer:
-      'Sistemas modernos de segurança, conectividade e energia dependem diretamente uns dos outros. Câmeras IP e controles faciais rodam sobre cabeamento de rede e switches PoE, que por sua vez exigem aterramento, proteção contra surtos e autonomia elétrica dimensionada. Centralizar em um Gestor de Segurança e Técnico Eletrotécnico elimina falhas de comunicação, reduz custos de passagem de cabos duplicados e garante um único responsável técnico caso algo precise de manutenção.',
+      'Sistemas modernos de segurança, conectividade e energia dependem diretamente uns dos outros. Câmeras IP e controles faciais rodam sobre cabeamento de rede e switches PoE, que por sua vez exigem aterramento, proteção contra surtos e autonomia elétrica dimensionada. Centralizar em um Gestor de Segurança Privada, Especialista em Redes de Computadores e Técnico Eletrotécnico elimina falhas de comunicação, reduz custos de passagem de cabos duplicados e garante um único responsável técnico caso algo precise de manutenção.',
   },
   {
     question: 'O que é o TRT (Termo de Responsabilidade Técnica) e quando ele é obrigatório?',
@@ -217,9 +212,14 @@ export default function App() {
               alt="Thiago Gonçalves"
               className="w-7 h-7 min-[360px]:w-8 min-[360px]:h-8 sm:w-9 sm:h-9 rounded-full object-cover object-top border-2 border-[#f3c742] shadow-xs group-hover:scale-105 transition-transform bg-slate-100"
             />
-            <span className="font-display text-xs min-[360px]:text-sm sm:text-lg font-extrabold tracking-tight text-[#0B1623] whitespace-nowrap">
-              THIAGO GONÇALVES
-            </span>
+            <div className="flex flex-col">
+              <span className="font-display text-xs min-[360px]:text-sm sm:text-lg font-extrabold tracking-tight text-[#0B1623] whitespace-nowrap leading-tight">
+                THIAGO GONÇALVES
+              </span>
+              <span className="hidden sm:inline-block text-[10px] text-slate-500 font-medium leading-none">
+                Gestor de Segurança Privada · Redes · Eletrotécnica
+              </span>
+            </div>
           </a>
 
           {/* Zone 2: Concise single-line navigation links (Desktop) */}
@@ -228,19 +228,13 @@ export default function App() {
               href="#servicos"
               className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
-              Pilares Técnicos
+              Serviços
             </a>
             <a
               href="#escopo"
               className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
               Simulador de Escopo
-            </a>
-            <a
-              href="#autoridade"
-              className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
-            >
-              Registro CRT &amp; TRT
             </a>
             <a
               href="#faq"
@@ -295,7 +289,7 @@ export default function App() {
             >
               <span className="flex items-center gap-2.5">
                 <span className="w-2 h-2 rounded-full bg-[#0051BA]"></span>
-                Pilares Técnicos
+                Serviços
               </span>
               <span className="text-xs font-mono text-slate-400">CFTV · Redes · Solar</span>
             </a>
@@ -312,17 +306,7 @@ export default function App() {
               <span className="text-xs font-mono text-slate-400">Diagnóstico</span>
             </a>
 
-            <a
-              href="#autoridade"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
-            >
-              <span className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                Registro CRT &amp; TRT
-              </span>
-              <span className="text-xs font-mono text-slate-400">Habilitação</span>
-            </a>
+
 
             <a
               href="#faq"
@@ -372,19 +356,21 @@ export default function App() {
               {/* Left Column: High-Conversion Direct Copywriting */}
               <div className="lg:col-span-6 flex flex-col justify-center py-0">
                 <div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-[10px] sm:text-xs font-semibold text-slate-700 mb-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#f3c742]"></span>
+                    Gestor de Segurança Privada · Especialista em Redes de Computadores · Técnico Eletrotécnico
+                  </div>
+
                   <h1 className="font-display text-[1.4rem] xs:text-[1.55rem] sm:text-2xl lg:text-[1.95rem] xl:text-[2.2rem] font-extrabold tracking-tight text-[#0B1623] leading-[1.12] [text-wrap:pretty]">
                     <span className="sm:whitespace-nowrap">Segurança Eletrônica,</span> Redes e Energia, integrados por um único{' '}
                     <span className="text-[#f3c742] whitespace-nowrap">Responsável Técnico</span>
                   </h1>
 
-                  <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[0.92rem] text-slate-600 leading-relaxed max-w-[56ch]">
-                    Elimine a falha de comunicação e os vários fornecedores e instaladores de câmeras,
-                    técnicos de TI e eletricistas. Centralize{' '}
-                    <strong className="font-semibold text-slate-900">
-                      projeto, execução e manutenção
-                    </strong>{' '}
-                    com um profissional habilitado e com vasta experiencia para proteger sua empresa,
-                    condomínio ou residência.
+                  <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[0.92rem] text-slate-700 leading-relaxed max-w-[56ch]">
+                    <strong className="font-semibold text-slate-900 block mb-1">
+                      Projeto, execução e manutenção unificada de Segurança Eletrônica, Redes Estruturadas e Energia Solar/EV.
+                    </strong>
+                    Elimine a falha de comunicação e a contratação de múltiplos fornecedores desconectados. Garanta integração técnica de alto nível com registro ativo no CRT e emissão de TRT para empresas, condomínios e residências.
                   </p>
                 </div>
 
@@ -457,7 +443,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION: GRID DE SERVIÇOS (3 PILARES DE ENGENHARIA E GESTÃO) */}
+        {/* SECTION: GRID DE SERVIÇOS */}
         <section
           id="servicos"
           className="scroll-mt-14 sm:scroll-mt-16 lg:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-10 bg-white border-b border-slate-200/80"
@@ -466,7 +452,7 @@ export default function App() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
               <div>
                 <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#0B1623] tracking-tight">
-                  Pilares Técnicos
+                  Serviços
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1">
                   Engenharia e gestão unificada com documentação técnica e emissão de TRT.
@@ -532,7 +518,7 @@ export default function App() {
                       rel="noopener noreferrer"
                       className="text-[11px] font-bold text-[#0B1623] bg-[#f3c742] hover:bg-[#eab825] px-2.5 py-1 rounded-md inline-flex items-center gap-1 whitespace-nowrap shrink-0 transition-colors"
                     >
-                      <span>Orçar pilar</span>
+                      <span>Orçar serviço</span>
                       <ArrowRight className="w-3 h-3" />
                     </a>
                   </div>
@@ -552,11 +538,7 @@ export default function App() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
                 <div className="lg:col-span-7 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center gap-2 text-xs font-mono font-semibold text-[#0051BA]">
-                      <SlidersHorizontal className="w-3.5 h-3.5 shrink-0" />
-                      <span>CONFIGURADOR DE DEMANDA TÉCNICA</span>
-                    </div>
-                    <h2 className="mt-2 font-display text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#0B1623] tracking-tight">
+                    <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#f3c742] tracking-tight">
                       Selecione os sistemas que você precisa implantar, reformar ou unificar:
                     </h2>
                     <p className="mt-2 text-sm text-slate-600">
@@ -588,7 +570,7 @@ export default function App() {
                                 isSelected ? 'text-[#f3c742]' : 'text-slate-500'
                               }`}
                             >
-                              Pilar: {option.pillar}
+                              Serviço: {option.pillar}
                             </p>
                           </div>
                           <div
@@ -659,114 +641,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION: AUTORIDADE TÉCNICA (CRT, EMISSÃO DE TRT & 10 ANOS DE EXPERIÊNCIA) */}
-        <section
-          id="autoridade"
-          className="scroll-mt-14 sm:scroll-mt-16 lg:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-12 bg-white border-b border-slate-200/80"
-        >
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-stretch">
-              {/* Left Column: Authority Visual / Engineer Portrait Slot */}
-              <div className="lg:col-span-5 flex">
-                <CustomizableVisualSlot
-                  slotId="authority"
-                  customImage={customImages['authority']}
-                  onImageChange={handleImageChange}
-                  alt="Thiago Gonçalves - Especialista Gestor de Segurança e Técnico Eletrotécnico com registro CRT"
-                  className="w-full rounded-xl lg:h-full"
-                >
-                  <AuthorityEngineerIllustration />
-                </CustomizableVisualSlot>
-              </div>
 
-              {/* Right Column: Rational Credentials & TRT Value */}
-              <div className="lg:col-span-7 flex flex-col justify-between">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-semibold text-[#0051BA]">
-                    <span>RESPALDO LEGAL E ENGENHARIA APLICADA</span>
-                    <span aria-hidden="true">·</span>
-                    <span>CRT ATIVO</span>
-                  </div>
-
-                  <h2 className="mt-3 font-display text-2xl sm:text-4xl font-extrabold text-[#0B1623] tracking-tight">
-                    Segurança patrimonial e infraestrutura elétrica não aceitam amadorismo.
-                  </h2>
-
-                  <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
-                    A maioria dos problemas graves em condomínios, empresas e residências nasce da
-                    contratação de instaladores sem formação normativa. Um curto-circuito em carregador
-                    veicular ou uma falha no alarme de incêndio (SDAI) sem responsável técnico pode
-                    invalidar o seguro do imóvel e gerar responsabilização civil e criminal para o
-                    gestor ou síndico.
-                  </p>
-
-                  {/* 3 Concrete Credential Blocks */}
-                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-200">
-                    <div>
-                      <div className="w-10 h-10 rounded-lg bg-[#f3c742]/25 border border-[#f3c742] flex items-center justify-center text-[#0B1623]">
-                        <ShieldCheck className="w-5 h-5" />
-                      </div>
-                      <h3 className="mt-3.5 font-display text-base font-bold text-[#0B1623]">
-                        Registro Ativo no CRT
-                      </h3>
-                      <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                        Técnico Eletrotécnico regularmente habilitado no Conselho Regional dos Técnicos
-                        Industriais para projetos, execução e laudos.
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="w-10 h-10 rounded-lg bg-[#f3c742]/25 border border-[#f3c742] flex items-center justify-center text-[#0B1623]">
-                        <FileCheck2 className="w-5 h-5" />
-                      </div>
-                      <h3 className="mt-3.5 font-display text-base font-bold text-[#0B1623]">
-                        Emissão Oficial de TRT
-                      </h3>
-                      <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                        Emissão de Termo de Responsabilidade Técnica garantindo conformidade com NBR 5410,
-                        NBR 17240, NBR 16280 e exigências de seguradoras.
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="w-10 h-10 rounded-lg bg-[#f3c742]/25 border border-[#f3c742] flex items-center justify-center text-[#0B1623]">
-                        <Award className="w-5 h-5" />
-                      </div>
-                      <h3 className="mt-3.5 font-display text-base font-bold text-[#0B1623]">
-                        10 Anos de Experiência
-                      </h3>
-                      <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                        Uma década resolvendo cenários complexos com visão dupla: Inteligência de Gestão
-                        de Segurança e precisão Eletrotécnica.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Authority Section Bottom CTA */}
-                <div className="mt-8 sm:mt-10 pt-6 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-bold text-[#0B1623]">
-                      Precisa de projeto novo, adequação normativa ou emissão de TRT?
-                    </p>
-                    <p className="text-xs text-slate-500 mt-0.5">
-                      Fale diretamente com Thiago Gonçalves sem passar por intermediários.
-                    </p>
-                  </div>
-                  <a
-                    href={buildWhatsAppUrl('Consulta Técnica com Emissão de TRT')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-sm font-bold shadow-sm transition-all duration-150 shrink-0"
-                  >
-                    <MessageCircle className="w-4 h-4 shrink-0" />
-                    <span>Agendar Visita Técnica</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* SECTION: FAQ (Objection Handling) */}
         <section
@@ -867,8 +742,7 @@ export default function App() {
                 </p>
               </div>
               <p className="mt-2 text-xs text-slate-400 max-w-sm leading-relaxed">
-                Gestão de Segurança Patrimonial e Técnica Eletrotécnica (CRT). Projeto, execução e
-                manutenção unificada de Segurança Eletrônica, Redes Estruturadas e Energia Solar/EV.
+                Gestor de Segurança Privada, Especialista em Redes de Computadores e Técnico Eletrotécnico (CRT Ativo). Projeto, execução e manutenção unificada de Segurança Eletrônica, Redes Estruturadas e Energia Solar/EV.
               </p>
             </div>
 

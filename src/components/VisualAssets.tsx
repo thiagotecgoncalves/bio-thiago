@@ -388,7 +388,7 @@ export const AuthorityEngineerIllustration: React.FC = () => (
           <div>
             <p className="text-xs text-slate-400">Responsável Técnico Habilitado</p>
             <p className="text-sm font-semibold text-white mt-0.5">
-              Thiago Gonçalves · Gestor de Segurança &amp; Eletrotécnico
+              Thiago Gonçalves · Gestor de Segurança Privada, Especialista em Redes e Técnico Eletrotécnico
             </p>
           </div>
         </div>
