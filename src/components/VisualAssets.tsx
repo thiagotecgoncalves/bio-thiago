@@ -8,6 +8,7 @@ interface CustomizableVisualProps {
   alt: string;
   children: React.ReactNode;
   className?: string;
+  imgClassName?: string;
 }
 
 export const CustomizableVisualSlot: React.FC<CustomizableVisualProps> = ({
@@ -17,17 +18,18 @@ export const CustomizableVisualSlot: React.FC<CustomizableVisualProps> = ({
   alt,
   children,
   className = '',
+  imgClassName,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className={`relative group overflow-hidden bg-[#F4F5F7] ${className}`}>
+    <div className={`relative group overflow-hidden ${className}`}>
       {customImage ? (
         <img
           src={customImage}
           alt={alt}
           referrerPolicy="no-referrer"
-          className="w-full h-full object-contain sm:object-cover"
+          className={imgClassName || 'w-full h-full object-contain sm:object-cover'}
         />
       ) : (
         children

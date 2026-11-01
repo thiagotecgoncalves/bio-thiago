@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import {
   MessageCircle,
   Check,
-  CheckCircle2,
   X,
   ArrowRight,
   ShieldCheck,
@@ -45,6 +44,7 @@ const SERVICE_PILLARS = [
     subtitle:
       'Projetos de prevenção e resposta com alimentação e rede imunes a sabotagem ou queda de tensão.',
     specs: 'CFTV IP · Alarme Perimetral · Incêndio · Acesso',
+    defaultImage: '/assets/aistudio/Seguran_a_Eletronica_e_Controle_de_Acesso_d9f5b76a.png',
     items: [
       {
         name: 'CFTV IP de Alta Definição e Analíticos',
@@ -70,6 +70,7 @@ const SERVICE_PILLARS = [
     subtitle:
       'Espinha dorsal física e lógica de alta velocidade para comunicação estável e sem interrupções.',
     specs: 'Cabeamento Cat6A/Fibra · Failover WAN · Wi-Fi',
+    defaultImage: '/assets/aistudio/Infreaestrutura_de_redes_e_telecom_811c0fe1.png',
     items: [
       {
         name: 'Cabeamento Estruturado e Racks',
@@ -95,6 +96,7 @@ const SERVICE_PILLARS = [
     subtitle:
       'Engenharia eletrotécnica aplicada para reduzir custos, garantir autonomia e recarga com segurança.',
     specs: 'Solar On/Off-Grid · Wallbox EV · Adequação NBR 5410',
+    defaultImage: '/assets/aistudio/Energia_Solar_e_Carregadores_Veiculares_695023ee.png',
     items: [
       {
         name: 'Sistemas Fotovoltaicos On-Grid e Híbridos',
@@ -360,27 +362,22 @@ export default function App() {
       )}
 
       <main className="flex-1 pt-14 sm:pt-16">
-        {/* HERO SECTION — Compact, Viewport-Balanced High-Trust Layout */}
+        {/* HERO SECTION — 1ª PÁGINA (Exclusiva no viewport em desktop) */}
         <section
           id="inicio"
-          className="lg:min-h-[calc(100vh-4rem)] flex flex-col justify-between pt-2 sm:pt-3 lg:pt-4 pb-0 bg-white border-b border-slate-200/80"
+          className="lg:h-[calc(100vh-4rem)] lg:min-h-[580px] flex flex-col justify-between pt-2 sm:pt-3 lg:pt-4 pb-0 bg-white border-b border-slate-200/80"
         >
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full flex-1 flex flex-col justify-center my-auto">
+          <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full flex-1 flex flex-col justify-center">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center py-2 sm:py-3">
               {/* Left Column: High-Conversion Direct Copywriting */}
-              <div className="lg:col-span-6 flex flex-col justify-center">
+              <div className="lg:col-span-6 flex flex-col justify-center py-0">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] sm:text-xs font-semibold text-slate-700 w-fit mb-2 sm:mb-2.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span>CFTV IP · Redes Estruturadas · Eletrotécnica &amp; TRT</span>
-                  </div>
-
                   <h1 className="font-display text-[1.4rem] xs:text-[1.55rem] sm:text-2xl lg:text-[1.95rem] xl:text-[2.2rem] font-extrabold tracking-tight text-[#0B1623] leading-[1.12] [text-wrap:pretty]">
                     <span className="sm:whitespace-nowrap">Segurança Eletrônica,</span> Redes e Energia, integrados por um único{' '}
                     <span className="text-[#f3c742] whitespace-nowrap">Responsável Técnico</span>
                   </h1>
 
-                  <p className="mt-2 sm:mt-2.5 text-xs sm:text-sm lg:text-[0.92rem] text-slate-600 leading-relaxed max-w-[56ch]">
+                  <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[0.92rem] text-slate-600 leading-relaxed max-w-[56ch]">
                     Elimine a falha de comunicação e os vários fornecedores e instaladores de câmeras,
                     técnicos de TI e eletricistas. Centralize{' '}
                     <strong className="font-semibold text-slate-900">
@@ -392,7 +389,7 @@ export default function App() {
                 </div>
 
                 {/* Primary Conversion Block */}
-                <div className="mt-3 sm:mt-3.5 pt-2.5 sm:pt-3 border-t border-slate-200/80">
+                <div className="mt-3.5 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-200/80">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                     <a
                       href={buildWhatsAppUrl()}
@@ -405,23 +402,12 @@ export default function App() {
                       <ArrowRight className="w-4 h-4 shrink-0 hidden sm:inline-block" />
                     </a>
                   </div>
-
-                  <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] sm:text-xs text-slate-500">
-                    <span className="flex items-center gap-1.5 font-medium text-slate-700">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      Atendimento direto com Thiago
-                    </span>
-                    <span className="flex items-center gap-1.5 font-medium text-slate-700">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      Emissão de TRT (CRT Ativo)
-                    </span>
-                  </div>
                 </div>
               </div>
 
               {/* Right Column: Dynamic Interactive Solution Block (Residências, Condomínios, Empresas) */}
               <div className="lg:col-span-6 w-full min-w-0 flex flex-col justify-center items-center lg:items-end">
-                <div className="w-full max-w-[390px] sm:max-w-[420px] lg:max-w-[430px]">
+                <div className="w-full max-w-[390px] sm:max-w-[420px] lg:max-w-[440px] xl:max-w-[460px]">
                   <DynamicSolutionBlock
                     activeSolution={selectedAudience}
                     onSelectSolution={(tab) => setSelectedAudience(tab)}
@@ -432,9 +418,9 @@ export default function App() {
             </div>
           </div>
 
-          {/* Full-Width 4-Column Quantitative Proof Row Below Hero Split - Docked cleanly at bottom */}
+          {/* Full-Width 4-Column Quantitative Proof Row Below Hero Split - Docked at the bottom of Page 1 */}
           <div className="w-full border-t border-slate-200/90 bg-[#FBFBFC]">
-            <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-3 sm:py-3.5 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-6">
+            <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-3 sm:py-3.5 lg:py-4 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-6">
               <div>
                 <p className="font-display text-base sm:text-xl xl:text-2xl font-extrabold text-[#0B1623] font-mono tabular-nums whitespace-nowrap">
                   10 Anos
@@ -474,9 +460,9 @@ export default function App() {
         {/* SECTION: GRID DE SERVIÇOS (3 PILARES DE ENGENHARIA E GESTÃO) */}
         <section
           id="servicos"
-          className="scroll-mt-16 sm:scroll-mt-20 pt-6 sm:pt-10 pb-8 sm:pb-12 bg-white border-b border-slate-200/80"
+          className="scroll-mt-14 sm:scroll-mt-16 lg:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-10 bg-white border-b border-slate-200/80"
         >
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
+          <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
               <div>
                 <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#0B1623] tracking-tight">
@@ -499,10 +485,11 @@ export default function App() {
                     {/* Visual Slot with Custom Upload Support - Standardized Height */}
                     <CustomizableVisualSlot
                       slotId={pillar.id}
-                      customImage={customImages[pillar.id]}
+                      customImage={customImages[pillar.id] || pillar.defaultImage}
                       onImageChange={handleImageChange}
                       alt={pillar.title}
-                      className="border-b border-slate-200 h-28 sm:h-32 w-full flex items-center justify-center overflow-hidden bg-[#F4F5F7]"
+                      className="border-b border-slate-200 h-28 sm:h-32 w-full flex items-center justify-center overflow-hidden bg-[#f0c54d]"
+                      imgClassName="w-full h-full object-contain"
                     >
                       {idx === 0 && <SecurityPillarIllustration />}
                       {idx === 1 && <NetworkPillarIllustration />}
@@ -510,7 +497,7 @@ export default function App() {
                     </CustomizableVisualSlot>
 
                     <div className="p-3.5 sm:p-4 flex flex-col flex-1">
-                      <h3 className="font-display text-sm sm:text-base font-bold text-[#0B1623] leading-snug">
+                      <h3 className="font-display text-sm sm:text-base font-extrabold text-[#f3c742] leading-snug">
                         {pillar.title}
                       </h3>
 
@@ -558,25 +545,27 @@ export default function App() {
         {/* SECTION: INTERACTIVE SCOPE CONFIGURATOR (Lead Qualifier -> Direct WhatsApp CTA) */}
         <section
           id="escopo"
-          className="scroll-mt-16 sm:scroll-mt-20 py-14 sm:py-20 lg:py-24 bg-[#F4F5F7] border-b border-slate-200/90"
+          className="scroll-mt-14 sm:scroll-mt-16 lg:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-12 bg-[#F4F5F7] border-b border-slate-200/90"
         >
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
-            <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-10 lg:p-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-start">
-                <div className="lg:col-span-7">
-                  <div className="flex items-center gap-2 text-xs font-mono font-semibold text-[#0051BA]">
-                    <SlidersHorizontal className="w-3.5 h-3.5 shrink-0" />
-                    <span>CONFIGURADOR DE DEMANDA TÉCNICA</span>
+          <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
+            <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-7 lg:p-8 shadow-xs">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+                <div className="lg:col-span-7 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 text-xs font-mono font-semibold text-[#0051BA]">
+                      <SlidersHorizontal className="w-3.5 h-3.5 shrink-0" />
+                      <span>CONFIGURADOR DE DEMANDA TÉCNICA</span>
+                    </div>
+                    <h2 className="mt-2 font-display text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#0B1623] tracking-tight">
+                      Selecione os sistemas que você precisa implantar, reformar ou unificar:
+                    </h2>
+                    <p className="mt-2 text-sm text-slate-600">
+                      Marque os itens abaixo para gerar o resumo técnico direto no WhatsApp de Thiago Gonçalves.
+                    </p>
                   </div>
-                  <h2 className="mt-2 font-display text-xl sm:text-3xl font-extrabold text-[#0B1623]">
-                    Selecione os sistemas que você precisa implantar, reformar ou unificar:
-                  </h2>
-                  <p className="mt-2 text-sm text-slate-600">
-                    Marque os itens abaixo para gerar o resumo técnico direto no WhatsApp de Thiago Gonçalves.
-                  </p>
 
                   {/* Checkboxes for Scope */}
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {SCOPE_OPTIONS.map((option) => {
                       const isSelected = selectedScope.includes(option.id);
                       return (
@@ -618,7 +607,7 @@ export default function App() {
                 </div>
 
                 {/* Right Column: Summary & Single High-Contrast WhatsApp CTA */}
-                <div className="lg:col-span-5 bg-[#F8FAFC] border border-slate-200 rounded-xl p-5 sm:p-8 flex flex-col justify-between">
+                <div className="lg:col-span-5 bg-[#F8FAFC] border border-slate-200 rounded-xl p-5 sm:p-7 flex flex-col justify-between">
                   <div>
                     <p className="text-xs font-mono font-semibold text-slate-500">
                       DIAGNÓSTICO DE CENTRALIZAÇÃO
@@ -673,9 +662,9 @@ export default function App() {
         {/* SECTION: AUTORIDADE TÉCNICA (CRT, EMISSÃO DE TRT & 10 ANOS DE EXPERIÊNCIA) */}
         <section
           id="autoridade"
-          className="scroll-mt-16 sm:scroll-mt-20 py-14 sm:py-20 lg:py-28 bg-white border-b border-slate-200/80"
+          className="scroll-mt-14 sm:scroll-mt-16 lg:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-12 bg-white border-b border-slate-200/80"
         >
-          <div className="max-w-[1240px] mx-auto px-4 sm:px-8">
+          <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-stretch">
               {/* Left Column: Authority Visual / Engineer Portrait Slot */}
               <div className="lg:col-span-5 flex">
@@ -782,7 +771,7 @@ export default function App() {
         {/* SECTION: FAQ (Objection Handling) */}
         <section
           id="faq"
-          className="scroll-mt-16 sm:scroll-mt-20 py-14 sm:py-20 bg-[#F4F5F7] border-b border-slate-200"
+          className="scroll-mt-14 sm:scroll-mt-16 pt-5 sm:pt-6 pb-7 sm:pb-9 bg-[#F4F5F7] border-b border-slate-200"
         >
           <div className="max-w-[900px] mx-auto px-4 sm:px-8">
             <div className="text-center">
