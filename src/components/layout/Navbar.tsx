@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, Menu, X } from 'lucide-react';
+import { motion } from 'motion/react';
 import { SITE_METADATA } from '../../data/landingData';
 
 interface NavbarProps {
@@ -67,20 +68,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
 
           {/* CTA Principal + Toggle Mobile */}
           <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
               href={onWhatsAppClick('Atendimento Técnico Integrado')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 min-[360px]:px-3 min-[360px]:py-2 sm:px-4 sm:py-2.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] active:scale-[0.99] text-[#0B1623] text-xs sm:text-sm font-bold shadow-sm transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c742]"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 min-[360px]:px-3 min-[360px]:py-2 sm:px-4 sm:py-2.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-xs sm:text-sm font-bold shadow-sm transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f3c742]"
             >
               <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>Falar no WhatsApp</span>
-            </a>
+            </motion.a>
 
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="md:hidden p-1.5 min-[360px]:p-2 rounded-lg text-slate-700 hover:text-[#0B1623] hover:bg-slate-100 transition-colors cursor-pointer flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#f3c742]"
+              className="md:hidden p-2 rounded-lg text-slate-700 hover:text-[#0B1623] hover:bg-slate-100 transition-colors cursor-pointer flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#f3c742]"
               aria-label={isMobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
               aria-expanded={isMobileMenuOpen}
             >

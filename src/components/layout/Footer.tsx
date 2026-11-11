@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageCircle, ArrowRight } from 'lucide-react';
+import { motion } from 'motion/react';
 import { SITE_METADATA } from '../../data/landingData';
 
 interface FooterProps {
@@ -21,10 +22,10 @@ export const Footer: React.FC<FooterProps> = ({
     <footer className="bg-[#0B1623] text-white">
       {/* Banner de Conversão Final */}
       <div className="border-b border-slate-800">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-12 sm:py-16 lg:py-20 flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-10 sm:py-14 lg:py-16 flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8">
           <div className="max-w-2xl">
-            <p className="text-xs font-mono font-semibold text-[#f3c742] tracking-wider">
-              PRONTO PARA CENTRALIZAR SUA INFRAESTRUTURA?
+            <p className="text-xs font-mono font-semibold text-[#f3c742] tracking-wider uppercase">
+              Pronto para centralizar sua infraestrutura?
             </p>
             <h2 className="mt-2 font-display text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
               Substitua múltiplos fornecedores por um único especialista habilitado.
@@ -36,23 +37,25 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div className="w-full sm:w-auto shrink-0">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               href={onWhatsAppClick('Solicitação de Orçamento / Visita Técnica')}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-5 sm:px-8 py-4 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-sm sm:text-base font-bold shadow-lg transition-all duration-150"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-5 sm:px-8 py-3.5 sm:py-4 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-sm sm:text-base font-bold shadow-lg transition-all duration-150"
             >
               <MessageCircle className="w-5 h-5 shrink-0" />
               <span>Iniciar Conversa no WhatsApp</span>
               <ArrowRight className="w-4 h-4 shrink-0" />
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>
 
       {/* Informações Profissionais e Direitos */}
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-slate-800/80 text-sm">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 pb-8 border-b border-slate-800/80 text-sm">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
               <img
@@ -70,14 +73,14 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div className="md:col-span-4 space-y-1.5 text-xs text-slate-300">
-            <p className="font-mono text-slate-400 font-semibold">CREDENCIAIS E ESCOPO</p>
+            <p className="font-mono text-slate-400 font-semibold uppercase">Credenciais e Escopo</p>
             <p>Habilitação: {SITE_METADATA.crtHabilitation}</p>
             <p>Experiência: {SITE_METADATA.experienceYears}</p>
             <p>Atendimento: Empresas, Condomínios e Residências</p>
           </div>
 
           <div className="md:col-span-3 space-y-2 text-xs text-slate-300">
-            <p className="font-mono text-slate-400 font-semibold">CANAL DIRETO</p>
+            <p className="font-mono text-slate-400 font-semibold uppercase">Canal Direto</p>
             <p className="font-mono text-white">WhatsApp: +{whatsappNumber}</p>
             {!isEditingPhone ? (
               <button

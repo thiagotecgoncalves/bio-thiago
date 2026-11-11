@@ -57,10 +57,10 @@ export const CustomizableVisualSlot: React.FC<CustomizableVisualProps> = ({
       <button
         type="button"
         onClick={() => fileInputRef.current?.click()}
-        className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-150 bg-white/95 hover:bg-white text-slate-800 border border-slate-300 px-3 py-1.5 rounded-md text-xs font-medium flex items-center gap-1.5 shadow-sm cursor-pointer whitespace-nowrap shrink-0"
+        className="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-150 bg-white/95 hover:bg-white text-slate-800 border border-slate-300 px-2 py-1 rounded text-[11px] font-medium flex items-center gap-1 shadow-sm cursor-pointer whitespace-nowrap shrink-0"
         title="Carregar foto real do seu acervo para este espaço"
       >
-        <Camera className="w-3.5 h-3.5 text-slate-600" />
+        <Camera className="w-3 h-3 text-slate-600" />
         <span>Usar foto própria</span>
       </button>
     </div>
