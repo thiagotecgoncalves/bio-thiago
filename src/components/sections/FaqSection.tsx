@@ -4,14 +4,14 @@ import { motion, AnimatePresence } from 'motion/react';
 import { FAQ_ITEMS } from '../../data/landingData';
 
 export const FaqSection: React.FC = () => {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   return (
     <section
       id="faq"
-      className="scroll-mt-14 sm:scroll-mt-16 pt-6 sm:pt-8 pb-8 sm:pb-12 bg-[#F4F5F7] border-b border-slate-200"
+      className="scroll-mt-14 sm:scroll-mt-16 lg:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-3.5 xl:py-6 bg-[#F4F5F7] border-b border-slate-200"
     >
-      <div className="max-w-[900px] mx-auto px-4 sm:px-8">
+      <div className="max-w-[900px] mx-auto px-4 sm:px-8 w-full">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,15 +19,15 @@ export const FaqSection: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="text-center"
         >
-          <p className="text-xs font-mono font-semibold text-[#0051BA] tracking-wider uppercase">
+          <p className="text-[11px] sm:text-xs font-mono font-semibold text-[#0051BA] tracking-wider uppercase">
             Perguntas Frequentes
           </p>
-          <h2 className="mt-1.5 font-display text-xl sm:text-3xl font-extrabold text-[#0B1623] tracking-tight">
+          <h2 className="mt-1 font-display text-lg sm:text-2xl lg:text-2xl font-extrabold text-[#0B1623] tracking-tight">
             Respostas diretas para gestores, síndicos e proprietários
           </h2>
         </motion.div>
 
-        <div className="mt-6 sm:mt-8 space-y-3">
+        <div className="mt-3.5 sm:mt-5 lg:mt-3 xl:mt-5 space-y-2 sm:space-y-2.5">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openFaqIndex === index;
             return (
@@ -42,14 +42,14 @@ export const FaqSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                  className="w-full px-4 sm:px-6 py-3.5 sm:py-4.5 text-left flex items-center justify-between gap-3 sm:gap-4 cursor-pointer hover:bg-slate-50/70 transition-colors"
+                  className="w-full px-3.5 sm:px-5 py-2.5 sm:py-3 text-left flex items-center justify-between gap-3 cursor-pointer hover:bg-slate-50/70 transition-colors"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-display text-xs sm:text-base font-bold text-[#0B1623] leading-snug">
+                  <span className="font-display text-xs sm:text-sm lg:text-[13px] xl:text-sm font-bold text-[#0B1623] leading-snug">
                     {item.question}
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 sm:w-5 sm:h-5 text-slate-500 shrink-0 transition-transform duration-200 ${
+                    className={`w-4 h-4 sm:w-4.5 sm:h-4.5 text-slate-500 shrink-0 transition-transform duration-200 ${
                       isOpen ? 'rotate-180 text-[#0B1623]' : ''
                     }`}
                   />
@@ -64,7 +64,7 @@ export const FaqSection: React.FC = () => {
                       transition={{ duration: 0.25, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 sm:pt-4">
+                      <div className="px-3.5 sm:px-5 pb-3 sm:pb-3.5 text-xs sm:text-[13px] text-slate-600 leading-relaxed border-t border-slate-100 pt-2 sm:pt-2.5">
                         {item.answer}
                       </div>
                     </motion.div>
