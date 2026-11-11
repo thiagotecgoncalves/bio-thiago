@@ -1,0 +1,6 @@
+{
+  "name": "Thiago Gonçalves - Integração Técnica & Segurança",
+  "description": "Gestor de Segurança Privada, Especialista em Redes de Computadores e Técnico Eletrotécnico. Projeto, execução e manutenção unificada de Segurança Eletrônica, Redes Estruturadas e Energia Solar/EV.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
