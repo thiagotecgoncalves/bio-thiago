@@ -16,12 +16,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onWhatsAppClick,
 }) => {
   return (
-    <section
-      id="inicio"
-      className="pt-3 sm:pt-4 lg:pt-5 pb-4 sm:pb-5 lg:pb-5 bg-white"
-    >
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center py-1 sm:py-2">
+    <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center py-2 sm:py-3">
           {/* Coluna Esquerda: Headline & Copywriting de Alta Conversão */}
           <motion.div
             initial={{ opacity: 0, x: -16 }}
@@ -91,6 +87,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </motion.div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
