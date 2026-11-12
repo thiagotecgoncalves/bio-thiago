@@ -38,7 +38,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
               <h1 className="font-display text-[1.45rem] xs:text-[1.65rem] sm:text-2xl lg:text-[1.95rem] xl:text-[2.2rem] font-extrabold tracking-tight text-[#0B1623] leading-[1.15] [text-wrap:pretty]">
                 <span className="sm:whitespace-nowrap">Segurança Eletrônica,</span> Redes e Energia, integrados por um único{' '}
-                <span className="text-[#f3c742] bg-[#0B1623] px-2 py-0.5 rounded whitespace-nowrap">
+                <span className="text-[#f3c742] whitespace-nowrap">
                   Responsável Técnico
                 </span>
               </h1>

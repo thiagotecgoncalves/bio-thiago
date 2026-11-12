@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { MessageCircle, Menu, X } from 'lucide-react';
-import { motion } from 'motion/react';
 import { SITE_METADATA } from '../../data/landingData';
 
 interface NavbarProps {
@@ -45,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
           </a>
 
           {/* Links Desktop */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
             <a
               href="#inicio"
               className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
@@ -66,36 +65,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
             </a>
           </nav>
 
-          {/* CTA Principal + Toggle Mobile */}
-          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-            {/* Botão WhatsApp: compacto no mobile para nunca empurrar o menu */}
-            <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              href={onWhatsAppClick('Atendimento Técnico Integrado')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-xs sm:text-sm font-bold shadow-sm transition-all duration-150 whitespace-nowrap shrink-0"
-            >
-              <MessageCircle className="w-4 h-4 shrink-0" />
-              <span className="hidden min-[480px]:inline">Falar no WhatsApp</span>
-              <span className="min-[480px]:hidden">WhatsApp</span>
-            </motion.a>
-
-            {/* Botão Hambúrguer Mobile com alto contraste e texto visível */}
+          {/* Toggle Menu Mobile - Trazido mais para a esquerda e com alta visibilidade */}
+          <div className="flex md:hidden items-center shrink-0 pr-1 sm:pr-2">
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="md:hidden flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors cursor-pointer shrink-0 shadow-sm"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors cursor-pointer shrink-0 shadow-sm border border-slate-700/60"
               aria-label={isMobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
               aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-[#f3c742]" />
+                <>
+                  <X className="w-5 h-5 text-[#f3c742]" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-white">Fechar</span>
+                </>
               ) : (
                 <>
                   <Menu className="w-5 h-5 text-[#f3c742]" />
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-white">Menu</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-white">Menu</span>
                 </>
               )}
             </button>
