@@ -15,6 +15,7 @@ import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/sections/HeroSection';
 import { ProofStats } from './components/sections/ProofStats';
 import { ServicesSection } from './components/sections/ServicesSection';
+import { FaqSection } from './components/sections/FaqSection';
 
 export default function App() {
   const [selectedAudience, setSelectedAudience] = useState<AudienceKey>('residencias');
@@ -70,9 +71,12 @@ export default function App() {
           onImageChange={handleImageChange}
           onWhatsAppClick={buildWhatsAppUrl}
         />
+
+        {/* Seção 3: Dúvidas Frequentes (FAQ) */}
+        <FaqSection />
       </main>
 
-      {/* Seção 3: Dúvidas Frequentes (FAQ) + Rodapé e Conversão Integrados */}
+      {/* Seção 4: Rodapé (Footer) Abaixo das Dúvidas Frequentes */}
       <Footer
         whatsappNumber={whatsappNumber}
         isEditingPhone={isEditingPhone}

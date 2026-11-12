@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FAQ_ITEMS } from '../../data/landingData';
 
@@ -9,7 +9,7 @@ export const FaqSection: React.FC = () => {
   return (
     <section
       id="faq"
-      className="scroll-mt-14 sm:scroll-mt-16 lg:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-3.5 xl:py-6 bg-[#F4F5F7] border-b border-slate-200"
+      className="scroll-mt-14 sm:scroll-mt-16 py-10 sm:py-16 bg-[#F8FAFC] border-b border-slate-200/90"
     >
       <div className="max-w-[900px] mx-auto px-4 sm:px-8 w-full">
         <motion.div
@@ -19,12 +19,16 @@ export const FaqSection: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="text-center"
         >
-          <p className="text-[11px] sm:text-xs font-mono font-semibold text-[#0051BA] tracking-wider uppercase">
-            Perguntas Frequentes
-          </p>
-          <h2 className="mt-1 font-display text-lg sm:text-2xl lg:text-2xl font-extrabold text-[#0B1623] tracking-tight">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-slate-200/80 shadow-2xs text-[10px] sm:text-xs font-semibold text-slate-700 mb-2">
+            <HelpCircle className="w-3.5 h-3.5 text-[#0051BA]" />
+            <span>Perguntas Frequentes</span>
+          </div>
+          <h2 className="font-display text-xl sm:text-3xl font-extrabold text-[#0B1623] tracking-tight">
             Respostas diretas para gestores, síndicos e proprietários
           </h2>
+          <p className="mt-1.5 text-xs sm:text-sm text-slate-600 max-w-[60ch] mx-auto">
+            Esclareça questões sobre compatibilidade, normas ABNT e centralização sob responsabilidade técnica CRT/TRT.
+          </p>
         </motion.div>
 
         <div className="mt-3.5 sm:mt-5 lg:mt-3 xl:mt-5 space-y-2 sm:space-y-2.5">
