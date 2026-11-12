@@ -5,8 +5,6 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
-  Network,
-  Zap,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SERVICE_PILLARS } from '../../data/landingData';
@@ -23,7 +21,6 @@ interface ServicesSectionProps {
   onWhatsAppClick: (context?: string) => string;
 }
 
-const TAB_ICONS = [ShieldCheck, Network, Zap];
 const TAB_LABELS = ['Segurança Eletrônica', 'Redes e Telecom', 'Energia e Solar'];
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({
@@ -215,7 +212,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="bg-[#F8FAFC] border-b border-slate-200/90 p-1.5 sm:p-2.5">
             <div className="grid grid-cols-3 gap-1 sm:gap-2 p-1 bg-slate-200/70 rounded-xl">
               {SERVICE_PILLARS.map((pillar, idx) => {
-                const Icon = TAB_ICONS[idx];
                 const isActive = activeIndex === idx;
                 return (
                   <button
@@ -230,7 +226,37 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                         : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
                     }`}
                   >
-                    <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    {idx === 0 && <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />}
+                    {idx === 1 && (
+                      <svg
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <rect x="9" y="2" width="6" height="6" rx="1" />
+                        <rect x="16" y="16" width="6" height="6" rx="1" />
+                        <rect x="2" y="16" width="6" height="6" rx="1" />
+                        <path d="M5 16v-4h14v4" />
+                        <path d="M12 8v4" />
+                      </svg>
+                    )}
+                    {idx === 2 && (
+                      <svg
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
+                    )}
                     <span className="truncate block">{TAB_LABELS[idx]}</span>
                   </button>
                 );
