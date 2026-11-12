@@ -45,18 +45,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
           </a>
 
           {/* Links Desktop */}
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
             <a
               href="#servicos"
               className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
               Serviços
-            </a>
-            <a
-              href="#escopo"
-              className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
-            >
-              Simulador de Escopo
             </a>
             <a
               href="#faq"
@@ -115,18 +109,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
                 Serviços
               </span>
               <span className="text-xs font-mono text-slate-400">CFTV · Redes · Solar</span>
-            </a>
-
-            <a
-              href="#escopo"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
-            >
-              <span className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#f3c742]"></span>
-                Simulador de Escopo
-              </span>
-              <span className="text-xs font-mono text-slate-400">Diagnóstico</span>
             </a>
 
             <a
