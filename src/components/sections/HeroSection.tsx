@@ -87,6 +87,5 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </motion.div>
         </div>
       </div>
-    </div>
   );
 };

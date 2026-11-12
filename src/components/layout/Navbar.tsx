@@ -9,11 +9,22 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  const handleScrollToTop = (e: React.MouseEvent) => {
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (window.location.hash) {
-      window.history.pushState(null, '', window.location.pathname);
+    setIsMobileMenuOpen(false);
+
+    if (targetId === 'inicio') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.location.hash) {
+        window.history.pushState(null, '', window.location.pathname);
+      }
+      return;
+    }
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `#${targetId}`);
     }
   };
 
@@ -24,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
           {/* Brand Wordmark com Avatar */}
           <a
             href="#inicio"
-            onClick={handleScrollToTop}
+            onClick={(e) => handleScrollTo(e, 'inicio')}
             className="flex items-center gap-2 sm:gap-2.5 group shrink min-w-0 outline-none p-0.5 cursor-pointer text-left"
             title="Ir para o Início"
           >
@@ -47,18 +58,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
           <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
             <a
               href="#inicio"
+              onClick={(e) => handleScrollTo(e, 'inicio')}
               className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
               Início
             </a>
             <a
               href="#servicos"
+              onClick={(e) => handleScrollTo(e, 'servicos')}
               className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
               Serviços
             </a>
             <a
               href="#faq"
+              onClick={(e) => handleScrollTo(e, 'faq')}
               className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
               Dúvidas
@@ -100,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
           <div className="max-w-[1240px] mx-auto px-4 py-3 space-y-1">
             <a
               href="#inicio"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleScrollTo(e, 'inicio')}
               className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
             >
               <span className="flex items-center gap-2.5">
@@ -112,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
 
             <a
               href="#servicos"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleScrollTo(e, 'servicos')}
               className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
             >
               <span className="flex items-center gap-2.5">
@@ -124,7 +138,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
 
             <a
               href="#faq"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleScrollTo(e, 'faq')}
               className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
             >
               <span className="flex items-center gap-2.5">
