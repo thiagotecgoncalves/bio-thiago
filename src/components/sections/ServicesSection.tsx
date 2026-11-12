@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  ArrowRight,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
@@ -18,7 +17,7 @@ import {
 interface ServicesSectionProps {
   customImages: Record<string, string>;
   onImageChange: (slotId: string, dataUrl: string) => void;
-  onWhatsAppClick: (context?: string) => string;
+  onWhatsAppClick?: (context?: string) => string;
 }
 
 const TAB_LABELS = ['Segurança Eletrônica', 'Redes e Telecom', 'Energia e Solar'];
@@ -337,58 +336,34 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     </div>
 
                     {/* Detalhes Técnicos e Sub-serviços */}
-                    <div className="lg:col-span-7 flex flex-col justify-between">
-                      <div>
-                        {/* Título Principal sem termo Pilar */}
-                        <h3 className="font-display text-base sm:text-xl lg:text-2xl font-extrabold text-[#0B1623] leading-snug">
-                          {pillar.title}
-                        </h3>
+                    <div className="lg:col-span-7 flex flex-col justify-center">
+                      {/* Título Principal sem termo Pilar */}
+                      <h3 className="font-display text-base sm:text-xl lg:text-2xl font-extrabold text-[#0B1623] leading-snug">
+                        {pillar.title}
+                      </h3>
 
-                        <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                          {pillar.subtitle}
-                        </p>
+                      <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        {pillar.subtitle}
+                      </p>
 
-                        {/* Grade 2x2 dos 4 Sub-serviços */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 mt-3 pt-3 border-t border-slate-200/80">
-                          {pillar.items.map((item) => (
-                            <div
-                              key={item.name}
-                              className="text-left flex items-start gap-2 p-2 sm:p-2.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs"
-                            >
-                              <CheckCircle2 className="w-4 h-4 text-[#f3c742] shrink-0 mt-0.5" />
-                              <div className="min-w-0">
-                                <h4 className="text-xs sm:text-[13px] font-bold text-[#0B1623] leading-snug">
-                                  {item.name}
-                                </h4>
-                                <p className="text-[11px] text-slate-600 mt-0.5 leading-tight">
-                                  {item.desc}
-                                </p>
-                              </div>
+                      {/* Grade 2x2 dos 4 Sub-serviços */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 mt-3 pt-3 border-t border-slate-200/80">
+                        {pillar.items.map((item) => (
+                          <div
+                            key={item.name}
+                            className="text-left flex items-start gap-2 p-2 sm:p-2.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-[#f3c742] shrink-0 mt-0.5" />
+                            <div className="min-w-0">
+                              <h4 className="text-xs sm:text-[13px] font-bold text-[#0B1623] leading-snug">
+                                {item.name}
+                              </h4>
+                              <p className="text-[11px] text-slate-600 mt-0.5 leading-tight">
+                                {item.desc}
+                              </p>
                             </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Rodapé do Card: Specs + CTA WhatsApp */}
-                      <div className="mt-3 sm:mt-4 pt-3 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                        <span
-                          className="text-[11px] font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md self-start sm:self-auto truncate max-w-full"
-                          title={pillar.specs}
-                        >
-                          {pillar.specs}
-                        </span>
-
-                        <motion.a
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.97 }}
-                          href={onWhatsAppClick(pillar.title)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-1.5 px-4 py-2 sm:py-2.5 rounded-lg bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-xs sm:text-sm font-bold shadow-xs hover:shadow-sm transition-all duration-150 cursor-pointer whitespace-nowrap"
-                        >
-                          <span>Orçar este serviço no WhatsApp</span>
-                          <ArrowRight className="w-4 h-4 shrink-0" />
-                        </motion.a>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
