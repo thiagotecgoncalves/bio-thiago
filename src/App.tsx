@@ -17,7 +17,6 @@ import { HeroSection } from './components/sections/HeroSection';
 import { ProofStats } from './components/sections/ProofStats';
 import { ServicesSection } from './components/sections/ServicesSection';
 import { ScopeSimulator } from './components/sections/ScopeSimulator';
-import { FaqSection } from './components/sections/FaqSection';
 
 export default function App() {
   const [selectedAudience, setSelectedAudience] = useState<AudienceKey>('residencias');
@@ -86,12 +85,9 @@ export default function App() {
           onToggleScope={toggleScopeItem}
           onWhatsAppClick={buildWhatsAppUrl}
         />
-
-        {/* Perguntas Frequentes (FAQ) */}
-        <FaqSection />
       </main>
 
-      {/* Rodapé e CTA Final de Conversão */}
+      {/* Seção Unificada: Dúvidas Frequentes (FAQ) + Rodapé e Conversão */}
       <Footer
         whatsappNumber={whatsappNumber}
         isEditingPhone={isEditingPhone}

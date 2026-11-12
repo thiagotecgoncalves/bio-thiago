@@ -22,7 +22,7 @@ export const ScopeSimulator: React.FC<ScopeSimulatorProps> = ({
   return (
     <section
       id="escopo"
-      className="scroll-mt-14 sm:scroll-mt-16 lg:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-5 sm:py-6 lg:py-2.5 xl:py-4 bg-[#F4F5F7] border-b border-slate-200/90"
+      className="scroll-mt-14 sm:scroll-mt-16 pt-3 sm:pt-4 lg:pt-5 pb-5 sm:pb-6 lg:pb-6 bg-[#F4F5F7] border-b border-slate-200/90"
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
         <motion.div
