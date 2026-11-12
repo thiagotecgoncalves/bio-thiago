@@ -1,4 +1,5 @@
 export type AudienceKey = 'empresas' | 'condominios' | 'residencias';
+export type PageId = 'home' | 'servicos' | 'duvidas';
 
 export interface AudienceProfile {
   label: string;

@@ -2,32 +2,31 @@ import React, { useState } from 'react';
 import { MessageCircle, Menu, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SITE_METADATA } from '../../data/landingData';
+import { PageId } from '../../types';
 
 interface NavbarProps {
+  currentPage: PageId;
+  onNavigate: (page: PageId) => void;
   onWhatsAppClick: (context?: string) => string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  currentPage,
+  onNavigate,
+  onWhatsAppClick,
+}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-
-  const handleScrollToTop = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (window.location.hash) {
-      window.history.pushState(null, '', window.location.pathname);
-    }
-  };
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         <div className="max-w-[1240px] mx-auto px-3 sm:px-8 h-14 sm:h-16 flex items-center justify-between gap-2">
           {/* Brand Wordmark com Avatar */}
-          <a
-            href="#"
-            onClick={handleScrollToTop}
-            className="flex items-center gap-2 sm:gap-2.5 group shrink-0 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f3c742] rounded-lg p-0.5 cursor-pointer"
-            title="Início"
+          <button
+            type="button"
+            onClick={() => onNavigate('home')}
+            className="flex items-center gap-2 sm:gap-2.5 group shrink-0 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f3c742] rounded-lg p-0.5 cursor-pointer text-left"
+            title="Ir para o Início"
           >
             <img
               src={SITE_METADATA.avatarImage}
@@ -42,22 +41,43 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
                 Gestor de Segurança Privada · Redes · Eletrotécnica
               </span>
             </div>
-          </a>
+          </button>
 
-          {/* Links Desktop */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-            <a
-              href="#servicos"
-              className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
+          {/* Links Desktop das 3 Páginas Independentes */}
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
+            <button
+              type="button"
+              onClick={() => onNavigate('home')}
+              className={`transition-all whitespace-nowrap cursor-pointer py-1 border-b-2 ${
+                currentPage === 'home'
+                  ? 'text-[#0B1623] font-extrabold border-[#f3c742]'
+                  : 'text-slate-600 hover:text-[#0B1623] border-transparent'
+              }`}
+            >
+              Início
+            </button>
+            <button
+              type="button"
+              onClick={() => onNavigate('servicos')}
+              className={`transition-all whitespace-nowrap cursor-pointer py-1 border-b-2 ${
+                currentPage === 'servicos'
+                  ? 'text-[#0B1623] font-extrabold border-[#f3c742]'
+                  : 'text-slate-600 hover:text-[#0B1623] border-transparent'
+              }`}
             >
               Serviços
-            </a>
-            <a
-              href="#faq"
-              className="hover:text-[#0B1623] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
+            </button>
+            <button
+              type="button"
+              onClick={() => onNavigate('duvidas')}
+              className={`transition-all whitespace-nowrap cursor-pointer py-1 border-b-2 ${
+                currentPage === 'duvidas'
+                  ? 'text-[#0B1623] font-extrabold border-[#f3c742]'
+                  : 'text-slate-600 hover:text-[#0B1623] border-transparent'
+              }`}
             >
               Dúvidas
-            </a>
+            </button>
           </nav>
 
           {/* CTA Principal + Toggle Mobile */}
@@ -99,29 +119,62 @@ export const Navbar: React.FC<NavbarProps> = ({ onWhatsAppClick }) => {
           }`}
         >
           <div className="max-w-[1240px] mx-auto px-4 py-3 space-y-1">
-            <a
-              href="#servicos"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
+            <button
+              type="button"
+              onClick={() => {
+                onNavigate('home');
+                setIsMobileMenuOpen(false);
+              }}
+              className={`w-full flex items-center justify-between px-3 py-3 rounded-lg text-sm transition-colors text-left ${
+                currentPage === 'home'
+                  ? 'bg-slate-100 text-[#0B1623] font-bold'
+                  : 'text-slate-800 hover:bg-slate-50'
+              }`}
+            >
+              <span className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#f3c742]"></span>
+                Início
+              </span>
+              <span className="text-xs font-mono text-slate-400">Home</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                onNavigate('servicos');
+                setIsMobileMenuOpen(false);
+              }}
+              className={`w-full flex items-center justify-between px-3 py-3 rounded-lg text-sm transition-colors text-left ${
+                currentPage === 'servicos'
+                  ? 'bg-slate-100 text-[#0B1623] font-bold'
+                  : 'text-slate-800 hover:bg-slate-50'
+              }`}
             >
               <span className="flex items-center gap-2.5">
                 <span className="w-2 h-2 rounded-full bg-[#0051BA]"></span>
                 Serviços
               </span>
               <span className="text-xs font-mono text-slate-400">CFTV · Redes · Solar</span>
-            </a>
+            </button>
 
-            <a
-              href="#faq"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3 py-3 rounded-lg text-slate-800 hover:text-[#0B1623] hover:bg-slate-100 active:bg-slate-200 font-semibold text-sm transition-colors"
+            <button
+              type="button"
+              onClick={() => {
+                onNavigate('duvidas');
+                setIsMobileMenuOpen(false);
+              }}
+              className={`w-full flex items-center justify-between px-3 py-3 rounded-lg text-sm transition-colors text-left ${
+                currentPage === 'duvidas'
+                  ? 'bg-slate-100 text-[#0B1623] font-bold'
+                  : 'text-slate-800 hover:bg-slate-50'
+              }`}
             >
               <span className="flex items-center gap-2.5">
                 <span className="w-2 h-2 rounded-full bg-slate-400"></span>
                 Dúvidas Frequentes
               </span>
               <span className="text-xs font-mono text-slate-400">FAQ</span>
-            </a>
+            </button>
 
             <div className="pt-2 mt-2 border-t border-slate-100">
               <a

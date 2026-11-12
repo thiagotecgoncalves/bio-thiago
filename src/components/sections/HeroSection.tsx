@@ -18,7 +18,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="inicio"
-      className="pt-3 sm:pt-4 lg:pt-5 pb-5 sm:pb-6 lg:pb-6 bg-white border-b border-slate-200/80"
+      className="pt-3 sm:pt-4 lg:pt-5 pb-4 sm:pb-5 lg:pb-5 bg-white"
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center py-1 sm:py-2">

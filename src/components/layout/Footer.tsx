@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer
       id="faq"
-      className="scroll-mt-14 sm:scroll-mt-16 bg-[#0B1623] text-white pt-4 sm:pt-6 lg:pt-6 pb-4 sm:pb-6 border-t border-slate-800"
+      className="flex-1 bg-[#0B1623] text-white pt-4 sm:pt-6 lg:pt-6 pb-4 sm:pb-6 flex flex-col justify-between"
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
         {/* Grid Unificado: FAQ à Esquerda + CTA & Rodapé à Direita */}

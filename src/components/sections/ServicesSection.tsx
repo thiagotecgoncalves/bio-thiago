@@ -23,7 +23,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   return (
     <section
       id="servicos"
-      className="scroll-mt-14 sm:scroll-mt-16 pt-3 sm:pt-4 lg:pt-5 pb-5 sm:pb-6 lg:pb-6 bg-white border-b border-slate-200/80"
+      className="pt-3 sm:pt-4 lg:pt-5 pb-5 sm:pb-6 lg:pb-6 bg-white"
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-8 w-full">
         {/* Cabeçalho da Seção com Animação Suave */}
