@@ -4,20 +4,14 @@ import { motion } from 'motion/react';
 import { SITE_METADATA } from '../../data/landingData';
 
 interface FooterProps {
-  whatsappNumber: string;
-  isEditingPhone: boolean;
-  onSetWhatsappNumber: (val: string) => void;
-  onToggleEditPhone: (val: boolean) => void;
   onWhatsAppClick: (context?: string) => string;
+  whatsappNumber?: string;
+  isEditingPhone?: boolean;
+  onSetWhatsappNumber?: (val: string) => void;
+  onToggleEditPhone?: (val: boolean) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({
-  whatsappNumber,
-  isEditingPhone,
-  onSetWhatsappNumber,
-  onToggleEditPhone,
-  onWhatsAppClick,
-}) => {
+export const Footer: React.FC<FooterProps> = ({ onWhatsAppClick }) => {
   const handleScrollToTop = (e: React.MouseEvent) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -63,60 +57,50 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          {/* Lado Direito: Ação Rápida WhatsApp + Configuração de Telefone */}
-          <div className="lg:col-span-5 flex flex-col gap-3 bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg">
-            <div>
-              <p className="text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider">
-                Atendimento Direto com o Especialista
-              </p>
-              <div className="flex items-center justify-between gap-2 mt-1">
-                <span className="text-xs text-slate-300">WhatsApp:</span>
-                <span className="font-mono text-sm font-bold text-white">+{whatsappNumber}</span>
-              </div>
-
-              {!isEditingPhone ? (
-                <button
-                  type="button"
-                  onClick={() => onToggleEditPhone(true)}
-                  className="text-[11px] text-[#f3c742] hover:underline cursor-pointer block text-right w-full mt-1"
-                >
-                  Alterar número do WhatsApp
-                </button>
-              ) : (
-                <div className="flex items-center gap-2 pt-2 justify-end">
-                  <input
-                    type="text"
-                    value={whatsappNumber}
-                    onChange={(e) => onSetWhatsappNumber(e.target.value)}
-                    placeholder="5567996294838"
-                    className="bg-slate-950 border border-slate-700 rounded px-2.5 py-1 text-xs font-mono text-white w-36 focus:outline-none focus:border-[#f3c742]"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => onToggleEditPhone(false)}
-                    className="px-2.5 py-1 bg-[#f3c742] text-[#0B1623] rounded text-xs font-bold cursor-pointer hover:bg-[#eab825] transition-colors"
-                  >
-                    Salvar
-                  </button>
-                </div>
-              )}
-            </div>
-
+          {/* Lado Direito: Ação Rápida WhatsApp Animada */}
+          <div className="lg:col-span-5 flex flex-col justify-center bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl">
             <motion.a
-              whileHover={{ scale: 1.02 }}
+              animate={{
+                scale: [1, 1.02, 1],
+                boxShadow: [
+                  '0 4px 14px 0 rgba(243,199,66,0.35)',
+                  '0 8px 24px 0 rgba(243,199,66,0.55)',
+                  '0 4px 14px 0 rgba(243,199,66,0.35)',
+                ],
+              }}
+              transition={{
+                duration: 2.2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               href={onWhatsAppClick('Solicitação de Orçamento / Visita Técnica pelo Rodapé')}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-sm font-bold shadow-md hover:shadow-lg transition-all cursor-pointer"
+              className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#f3c742] hover:bg-[#eab825] text-[#0B1623] text-sm sm:text-base font-extrabold shadow-lg transition-all cursor-pointer select-none group"
             >
-              <MessageCircle className="w-4 h-4 shrink-0" />
+              <motion.div
+                animate={{ rotate: [0, -12, 12, -8, 0] }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  repeatDelay: 2.5,
+                  ease: 'easeInOut',
+                }}
+              >
+                <MessageCircle className="w-5 h-5 shrink-0" />
+              </motion.div>
               <span>Iniciar Conversa no WhatsApp</span>
-              <ArrowRight className="w-4 h-4 shrink-0" />
+              <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" />
             </motion.a>
 
-            <p className="text-[10px] text-center text-slate-400 font-mono">
-              Atendimento em horário comercial · Retorno técnico ágil
+            <p className="mt-2.5 text-[11px] text-center text-slate-400 font-mono flex items-center justify-center gap-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Online no WhatsApp · Retorno ágil em horário comercial</span>
             </p>
           </div>
         </div>

@@ -77,13 +77,7 @@ export default function App() {
       </main>
 
       {/* Seção 4: Rodapé (Footer) Abaixo das Dúvidas Frequentes */}
-      <Footer
-        whatsappNumber={whatsappNumber}
-        isEditingPhone={isEditingPhone}
-        onSetWhatsappNumber={setWhatsappNumber}
-        onToggleEditPhone={setIsEditingPhone}
-        onWhatsAppClick={buildWhatsAppUrl}
-      />
+      <Footer onWhatsAppClick={buildWhatsAppUrl} />
     </div>
   );
 }
